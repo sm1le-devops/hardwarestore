@@ -1,16 +1,31 @@
-# React + Vite
+Construction Company — Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a modern and responsive website for a construction company that provides services in renovation, reconstruction, and facade work across various countries in Europe. The website is designed with user convenience, modern aesthetics, and smooth interactivity in mind.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Responsive Design — the site displays correctly on desktops, tablets, and mobile devices.
 
-## React Compiler
+Fixed Header — persistent navigation for quick access to different sections.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Smooth Scroll — clicking a menu item scrolls the page smoothly to the corresponding section, accounting for the fixed header.
 
-## Expanding the ESLint configuration
+Services Section with Carousel — horizontal scrolling of service cards with left/right buttons and smooth hover animation.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Card Highlighting — cards are highlighted and slightly enlarged on hover for better visual perception.
+
+Scroll Animation — cards appear with an effect when entering the viewport.
+
+Contacts — section with phone, location, and copyright information.
+
+Multilingual Interface — option to select language via a dropdown menu.
+
+Technologies
+
+HTML5, CSS3, JavaScript (Vanilla JS)
+
+Font Awesome for icons
+
+Smooth CSS animations and transitions
+
+Flexbox and Grid for responsive layout
