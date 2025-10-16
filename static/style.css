@@ -147,27 +147,28 @@ body {
   font-size: 22px;
 }
 .chat-icon {
-  position: absolute;
-  bottom: 20px;
+  position: fixed;
+  bottom: 100px; /* чуть выше от низа */
   right: 20px;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #06121e;
   border-radius: 50%;
+  border: 2px solid white; /* вот белая линия */
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   text-decoration: none;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  z-index: 9999;
 }
-
-
 .chat-icon:hover {
-  transform: translateY(-5px) scale(1.1); /* немного поднять и увеличить */
-  background-color: #0a1f3a; /* подсветка фона */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(52,152,219,0.6); /* синее свечение */
+  transform: translateY(-5px) scale(1.1);
+  background-color: #0a1f3a;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(52,152,219,0.6);
+  border-color: #3498db; /* при наведении белая линия может подсвечиваться синим */
 }
 
 .chat-icon .img-wrapper {
@@ -417,4 +418,147 @@ body {
   .menu-toggle {
     display: block;
   }
+}
+/* === CHAT MENU === */
+.chat-menu {
+  position: fixed;
+  inset: 0; /* занимает весь экран */
+  background: rgba(0, 0, 0, 0.6);
+  display: none; /* скрыто по умолчанию */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: opacity 0.3s ease;
+}
+
+.chat-menu.show {
+  display: flex;
+}
+
+.chat-menu-content {
+  position: relative;
+  background: #0a1f3a; /* темно-синий под цвет сайта */
+  padding: 30px 40px;
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  width: 300px;
+  animation: scaleIn 0.3s ease forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.chat-menu-content h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.chat-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* расстояние между иконкой и текстом */
+  width: 100%;
+  background: #1c2a39;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.chat-btn:hover {
+  background: #273b53;
+  transform: scale(1.03);
+}
+.chat-btn svg {
+  flex-shrink: 0;
+}
+
+.chat-btn.order {
+  background: #3498db;
+}
+
+.chat-btn.order:hover {
+  background: #2980b9;
+}
+.chat-btn.whatsapp {
+  background: linear-gradient(135deg, #25d366, #1ebd5a);
+  color: #fff;
+}
+.chat-btn.whatsapp:hover {
+  background: linear-gradient(135deg, #1ebd5a, #159c48);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(37, 211, 102, 0.5);
+}
+.chat-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.chat-close:hover {
+  color: #3498db;
+  transform: scale(1.2);
+}
+.chat-btn.email:hover,
+.chat-btn.phone:hover {
+  background: #273b53;
+  transform: scale(1.05);
+}
+.chat-btn.order {
+  background: #3498db;
+}
+
+.chat-btn.order:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+.service {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.service.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.service:nth-child(1).visible { transition-delay: 0s; }
+.service:nth-child(2).visible { transition-delay: 0.2s; }
+.service:nth-child(3).visible { transition-delay: 0.3s; }
+.service:nth-child(4).visible { transition-delay: 0.4s; }
+.service:nth-child(5).visible { transition-delay: 0.5s; }
+.service:nth-child(6).visible { transition-delay: 0.6s; }
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px); /* чуть снизу */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

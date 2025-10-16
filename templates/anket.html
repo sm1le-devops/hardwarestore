@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заказ услуг - Строительная компания</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    body {
+      background: url('/static/assets/byt1.jpg') center/cover no-repeat;
+      color: white;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .order-form-section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 140px 20px 50px 20px;
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .order-form {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px 25px;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .order-form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 26px;
+      color: #fff;
+    }
+
+    .order-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .order-form input,
+    .order-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .order-form input[type="file"] {
+      padding: 5px;
+    }
+
+    .order-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .order-form button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .order-form button:hover:not(:disabled) {
+      background-color: #2980b9;
+      transform: scale(1.03);
+    }
+
+    .order-form button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 768px) {
+      .order-form-section {
+        padding: 160px 20px 50px 20px;
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Уведомление над формой */
+    #successMessage {
+      display: none;
+      background: rgba(46, 204, 113, 0.95);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 15px;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo-wrapper">
+      <img src="/static/assets/logo.png" class="logo-img">
+      <div class="logo">Строительная компания</div>
+    </div>
+
+    <nav class="nav" id="navbar">
+      <a href="/#hero" class="nav-link">Главная</a>
+      <a href="/#services" class="nav-link">Работы</a>
+      <a href="/#about-contact" class="nav-link">О нас</a>
+      <a href="#" class="nav-link" id="contactLink">Контакты</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="location">
+        <i class="fa-solid fa-location-dot"></i> Хомутов, Чехия
+      </div>
+      <div class="lang-dropdown">
+        <i class="fa-solid fa-globe"></i>
+        <select class="lang-select">
+          <option>Русский</option>
+          <option>English</option>
+        </select>
+      </div>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+  </header>
+
+  <!-- Форма заявки -->
+  <section class="order-form-section">
+    <form class="order-form fade-in" action="/anket" method="POST" enctype="multipart/form-data">
+      <!-- Уведомление над формой -->
+      <div id="successMessage">✅ Заявка успешно отправлена! Перенаправление на главную...</div>
+
+      <h2>Оставить заявку</h2>
+
+      <label for="name">Имя и фамилия</label>
+      <input type="text" id="name" name="name" placeholder="Ваше имя и фамилия" required>
+
+      <label for="phone">Телефон</label>
+      <input type="tel" id="phone" name="phone" placeholder="+420 xxx xxx xxx" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+
+      <label for="description">Описание заказа</label>
+      <textarea id="description" name="description" placeholder="Кратко опишите, какие услуги нужны" required></textarea>
+
+      <label for="photo">Прикрепить фото (опционально)</label>
+      <input type="file" id="photo" name="photo" accept="image/*" multiple>
+
+      <button type="submit">Отправить заявку</button>
+    </form>
+  </section>
+
+  <script>
+    // Анимация появления формы
+    window.addEventListener('DOMContentLoaded', () => {
+      const fadeEls = document.querySelectorAll('.fade-in');
+      fadeEls.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, index * 300);
+      });
+    });
+
+    // Отправка формы через fetch
+    const form = document.querySelector('.order-form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      // Делаем кнопку неактивной
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправка...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (response.ok) {
+          // Показать уведомление
+          successMessage.style.display = 'block';
+
+          // Редирект через 2 секунды
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2000);
+        } else {
+          throw new Error('Ошибка при отправке');
+        }
+      } catch (err) {
+        alert('Произошла ошибка при отправке формы. Попробуйте позже.');
+        console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Отправить заявку';
+      }
+    });
+  </script>
+</body>
+</html>
