@@ -29,7 +29,13 @@ async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-# --- Страница формы ---
+# --- Страница услуг ---
+@router.get("/attendance", response_class=HTMLResponse)
+async def get_services(request: Request):
+    return templates.TemplateResponse("attendance.html", {"request": request})
+
+
+# --- Страница анкеты ---
 @router.get("/anket", response_class=HTMLResponse)
 async def get_anket(request: Request):
     return templates.TemplateResponse("anket.html", {"request": request})
@@ -78,7 +84,7 @@ Email: {email}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка отправки письма: {e}")
 
-    # ✅ уведомление и редирект без отдельной страницы
+    # ✅ уведомление и редирект
     return HTMLResponse("""
         <script>
             alert("✅ Заявка успешно отправлена!");

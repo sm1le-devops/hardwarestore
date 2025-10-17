@@ -1,30 +1,33 @@
 // Плавная прокрутка и активные ссылки
-const header = document.querySelector('.header');
-const headerHeight = header ? header.offsetHeight : 0;
-
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function (e) {
-    e.preventDefault();
+    const href = this.getAttribute('href');
 
-    // Активная ссылка
-    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
-    this.classList.add('active');
+    if (href.startsWith('#')) {
+      e.preventDefault();
 
-    let targetSection;
+      // Активная ссылка
+      document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+      this.classList.add('active');
 
-    if (this.id === 'contactLink') {
-      targetSection = document.querySelector('.contact-info');
-    } else {
-      const targetId = this.getAttribute('href').substring(1);
-      targetSection = document.getElementById(targetId);
+      let targetSection;
+      if (this.id === 'contactLink') {
+        targetSection = document.querySelector('.contact-info');
+      } else {
+        const targetId = href.substring(1);
+        targetSection = document.getElementById(targetId);
+      }
+
+      if (targetSection) {
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+        const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      }
     }
-
-    if (targetSection) {
-      const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10;
-      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-    }
+    // Если href не начинается с #, переход по ссылке выполняется как обычно
   });
 });
+
 
 // Появление карточек при прокрутке
 window.addEventListener('scroll', () => {

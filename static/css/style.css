@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #0b0d10;
+  background-color: #1a1c22;
   color: white;
   scroll-behavior: smooth;
 }
@@ -35,7 +35,12 @@ body {
   font-weight: bold;
   white-space: nowrap;
 }
-
+.logo-link {
+  text-decoration: none; /* убираем подчеркивание */
+  color: inherit;        /* оставляем цвет текста */
+  display: flex;
+  align-items: center;
+}
 .logo-img {
   width: 45px;
   height: 45px;
@@ -289,8 +294,8 @@ body {
 .service:hover {
     transform: translateY(-8px);
     filter: brightness(1.15); /* сильнее подсветка */
-    box-shadow: 0 12px 30px rgba(0,0,0,0.7), 
-                0 0 20px rgba(52, 152, 219, 0.6); /* цветное свечение */
+    box-shadow: 0 12px 30px rgba(247, 247, 247, 0.721), 
+                0 0 20px rgba(253, 254, 255, 0.845); /* цветное свечение */
 }
 
 
@@ -316,7 +321,22 @@ body {
     font-size: 15px;
     margin-bottom: 15px;
 }
+#services .service {
+  flex: 0 0 calc(25% - 18px);
+  background: linear-gradient(145deg, #1e2230, #252a38);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
 
+#services .service:hover {
+  transform: translateY(-14px) scale(1.03);
+  filter: brightness(1.1);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8),
+              0 0 20px rgba(255, 255, 255, 0.919);
+}
 /* Стрелки */
 .arrow {
   position: absolute;
