@@ -116,6 +116,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 6px 10px;
   border-radius: 8px;
+  position: relative;
   transition: all 0.3s ease;
 }
 
@@ -140,9 +141,7 @@ body {
   padding-right: 10px;
 }
 
-.lang-dropdown {
-  position: relative;
-}
+
 
 .lang-dropdown::after {
   content: "▼";
@@ -331,9 +330,7 @@ body {
   background: #3498db;
 }
 
-.chat-btn.order:hover {
-  background: #2980b9;
-}
+
 
 .chat-btn.whatsapp {
   background: linear-gradient(135deg, #25d366, #1ebd5a);
@@ -369,9 +366,7 @@ body {
   transform: scale(1.05);
 }
 
-.chat-btn.order {
-  background: #3498db;
-}
+
 
 .chat-btn.order:hover {
   background: #2980b9;

@@ -53,29 +53,22 @@
                     <h3>Фильтры</h3>
                     <div class="filter-group">
                         <h4>Внутренние работы</h4>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="electrical">
-                            Электрика</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="plumbing">
-                            Сантехника</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="painting"> Малярные
-                            работы</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="tiling"> Плиточные
-                            работы</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="rodof"> Демонтажные
-                            работы</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="rosof">
-                            Гипсокартонные конструкции</label>
+                        {% for ad in ads if ad.category in ["electrical", "plumbing", "painting", "tiling", "rodof",
+                        "rosof"] %}
+                        <label>
+                            <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
+                            {{ ad.title }}
+                        </label>
+                        {% endfor %}
                     </div>
                     <div class="filter-group">
                         <h4>Внешние работы</h4>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="facade"> Фасадные
-                            работы</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="roof"> Кровельные
-                            работы</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="rood">
-                            Реставрационные работы</label>
-                        <label><input type="checkbox" class="filter-checkbox" data-category="facade-finishing">
-                            Отделка фасадов</label>
+                        {% for ad in ads if ad.category in ["facade", "roof", "rood", "facade-finishing"] %}
+                        <label>
+                            <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
+                            {{ ad.title }}
+                        </label>
+                        {% endfor %}
                     </div>
                 </aside>
 
@@ -96,46 +89,12 @@
                         </div>
                     </div>
                     <div class="services-grid">
-                        <a href="/attendance/electrical" class="service-card" data-category="electrical">
-                            <i class="fa-solid fa-lightbulb icon"></i>
-                            <h3>Электрика</h3>
+                        {% for ad in ads %}
+                        <a href="/ad/{{ ad.id }}" class="service-card" data-category="{{ ad.category }}">
+                            <i class="fa-solid {{ ad.icon }} icon"></i>
+                            <h3>{{ ad.title }}</h3>
                         </a>
-                        <a href="/attendance/plumbing" class="service-card" data-category="plumbing">
-                            <i class="fa-solid fa-faucet icon"></i>
-                            <h3>Сантехника</h3>
-                        </a>
-                        <a href="/attendance/painting" class="service-card" data-category="painting">
-                            <i class="fa-solid fa-paint-roller icon"></i>
-                            <h3>Малярные работы</h3>
-                        </a>
-                        <a href="/attendance/tiling" class="service-card" data-category="tiling">
-                            <i class="fa-solid fa-border-all icon"></i>
-                            <h3>Плиточные работы</h3>
-                        </a>
-                        <a href="/attendance/facade" class="service-card" data-category="facade">
-                            <i class="fa-solid fa-house-chimney icon"></i>
-                            <h3>Фасадные работы</h3>
-                        </a>
-                        <a href="/attendance/roof" class="service-card" data-category="roof">
-                            <i class="fa-solid fa-hammer icon"></i>
-                            <h3>Кровельные работы</h3>
-                        </a>
-                        <a href="/attendance/rood" class="service-card" data-category="rood">
-                            <i class="fa-solid fa-person-digging icon"></i>
-                            <h3>Реставрационные работы</h3>
-                        </a>
-                        <a href="/attendance/rodof" class="service-card" data-category="rodof">
-                            <i class="fa-solid fa-trash-can icon"></i>
-                            <h3>Демонтажные работы</h3>
-                        </a>
-                        <a href="/attendance/rosof" class="service-card" data-category="rosof">
-                            <i class="fa-solid fa-building-columns icon"></i>
-                            <h3>Гипсокартонные конструкции</h3>
-                        </a>
-                        <a href="/attendance/facade-finishing" class="service-card" data-category="facade-finishing">
-                            <i class="fa-solid fa-paintbrush icon"></i>
-                            <h3>Отделка фасадов</h3>
-                        </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

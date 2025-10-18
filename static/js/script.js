@@ -1,4 +1,4 @@
-// Плавная прокрутка и активные ссылки
+// ===== Плавная прокрутка и активные ссылки =====
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
@@ -24,20 +24,10 @@ document.querySelectorAll('.nav-link').forEach(link => {
         window.scrollTo({ top: targetPosition, behavior: 'smooth' });
       }
     }
-    // Если href не начинается с #, переход по ссылке выполняется как обычно
   });
 });
 
-
-// Появление карточек при прокрутке
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.service').forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 50) el.classList.add('visible');
-  });
-});
-
-// Скролл карточек (мобильное меню)
+// ===== Скролл карточек (мобильное меню) =====
 const container = document.getElementById("servicesContainer");
 if (container) {
   const leftBtn = document.getElementById("scrollLeft");
@@ -60,7 +50,7 @@ if (container) {
   });
 }
 
-// Чат
+// ===== Чат =====
 const chatIcon = document.querySelector('.chat-icon');
 const chatMenu = document.querySelector('.chat-menu');
 
@@ -69,7 +59,6 @@ chatIcon?.addEventListener('click', (e) => {
   chatMenu?.classList.toggle('show');
 });
 
-// Закрытие меню при клике вне блока
 chatMenu?.addEventListener('click', (e) => {
   if (e.target === chatMenu) chatMenu.classList.remove('show');
 });
@@ -78,36 +67,33 @@ chatMenu?.addEventListener('click', (e) => {
 document.querySelector('.chat-btn.whatsapp')?.addEventListener('click', () => {
   window.open('https://wa.me/42091234567', '_blank');
 });
-
 document.querySelector('.chat-btn.email')?.addEventListener('click', () => {
   const myEmail = 'example154@gmail.com';
   const subject = 'Посетитель сайта';
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(myEmail)}&su=${encodeURIComponent(subject)}`;
   window.open(gmailUrl, '_blank');
 });
-
 document.querySelector('.chat-btn.phone')?.addEventListener('click', () => {
   window.location.href = 'tel:+420 xxx xxx xxx';
 });
-
-// Переход на страницу формы заказа через FastAPI роут
 document.querySelector('.chat-btn.order')?.addEventListener('click', () => {
   window.location.href = '/anket';
 });
-
-// Закрытие чата крестиком
 document.querySelector('.chat-close')?.addEventListener('click', () => {
   chatMenu?.classList.remove('show');
 });
 
+// ===== Fade-in элементов =====
 window.addEventListener('DOMContentLoaded', () => {
   const fadeEls = document.querySelectorAll('.fade-in');
   fadeEls.forEach((el, index) => {
     setTimeout(() => {
       el.classList.add('visible');
-    }, index * 300); // каждый элемент появляется с задержкой 300мс
+    }, index * 300);
   });
 });
+
+// ===== Счётчики =====
 const counters = document.querySelectorAll('.number');
 const options = { threshold: 0.5 };
 
@@ -134,3 +120,30 @@ const observer = new IntersectionObserver((entries) => {
 }, options);
 
 counters.forEach(counter => observer.observe(counter));
+
+// ===== Появление контейнера и карточек при скролле =====
+const servicesInner = document.querySelector('.services-inner');
+const serviceCards = document.querySelectorAll('.service');
+const containerObserverOptions = { threshold: 0.2 };
+
+if (servicesInner) {
+  const containerObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Появление контейнера
+        servicesInner.classList.add('visible');
+
+        // Появление карточек поочередно
+        serviceCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 200); // задержка между карточками
+        });
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, containerObserverOptions);
+
+  containerObserver.observe(servicesInner);
+}
