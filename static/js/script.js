@@ -12,7 +12,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
       let targetSection;
       if (this.id === 'contactLink') {
-        targetSection = document.querySelector('.contact-info');
+        targetSection = document.getElementById('contact-inf');
       } else {
         const targetId = href.substring(1);
         targetSection = document.getElementById(targetId);
@@ -108,3 +108,29 @@ window.addEventListener('DOMContentLoaded', () => {
     }, index * 300); // каждый элемент появляется с задержкой 300мс
   });
 });
+const counters = document.querySelectorAll('.number');
+const options = { threshold: 0.5 };
+
+const startCounting = (entry) => {
+  if (!entry.isIntersecting) return;
+  const counter = entry.target;
+  const target = +counter.dataset.target;
+  let current = 0;
+
+  const update = () => {
+    current += Math.ceil(target / 100);
+    if (current < target) {
+      counter.textContent = current;
+      requestAnimationFrame(update);
+    } else {
+      counter.textContent = target;
+    }
+  };
+  update();
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(startCounting);
+}, options);
+
+counters.forEach(counter => observer.observe(counter));

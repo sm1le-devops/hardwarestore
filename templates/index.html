@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Строительная компания</title>
+  <title>Бригада</title>
   <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <link rel="stylesheet" href="/static/css/style.css" />
@@ -15,15 +15,15 @@
   <header class="header">
     <a href="/" class="logo-wrapper logo-link">
       <img src="/static/assets/logo.png" class="logo-img" alt="Логотип">
-      <div class="logo">Строительная компания</div>
+      <div class="logo">Бригада</div>
     </a>
 
     <nav class="nav" id="navbar">
       <a href="#hero" class="nav-link active">Главная</a>
       <a href="/attendance" class="nav-link">Услуги</a>
       <a href="#services" class="nav-link">Проекты</a>
-      <a href="#about-contact" class="nav-link">О нас</a>
-      <a href="#contact-info" class="nav-link" id="contactLink">Контакты</a>
+      <a href="#about-us" class="nav-link">О нас</a>
+      <a href="#contact-inf" class="nav-link" id="contactLink">Контакты</a>
     </nav>
 
     <div class="header-right">
@@ -144,20 +144,83 @@
       </button>
     </div>
   </section>
-  <section id="about-contact" class="about-contact">
-    <div class="about-content">
-      <h2>О нашей компании</h2>
-      <p>
-        Мы — команда профессионалов, которая занимается строительством, ремонтом и реконструкцией зданий
-        по всей Европе. Наш приоритет — качество, надёжность и соблюдение сроков.
-      </p>
+  <!-- Преимущества -->
+  <section class="advantages" id="about-us">
+    <h2>Почему выбирают нас</h2>
+    <div class="advantages-container">
+      <div class="advantage">
+        <i class="fa-solid fa-helmet-safety"></i>
+        <h3>Профессионализм</h3>
+        <p>Наши специалисты имеют более 7 лет опыта.</p>
+      </div>
+      <div class="advantage">
+        <i class="fa-solid fa-building"></i>
+        <h3>Современные технологии</h3>
+        <p>Мы применяем инновационные материалы и методы, обеспечивая долговечность и надёжность.</p>
+      </div>
+      <div class="advantage">
+        <i class="fa-solid fa-handshake"></i>
+        <h3>Ответственность</h3>
+        <p>Каждый проект выполняется точно в срок — с гарантией качества и прозрачным бюджетом.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="contact-info" id="contact-info">
-      <h3>Контакты</h3>
-      <p>📞 +129-456-7890</p>
-      <p>📍 Хомутов, Чехия</p>
-      <small>© 2025 Строительная компания</small>
+  <!-- Счётчики -->
+  <section class="stats" id="about-contact">
+    <div class="stats-container">
+      <div class="stat">
+        <span class="number" data-target="7">0</span>
+        <p>лет на рынке</p>
+      </div>
+      <div class="stat">
+        <span class="number" data-target="83">0</span>
+        <p>успешных проектов</p>
+      </div>
+      <div class="stat">
+        <span class="number" data-target="32">0</span>
+        <p>постоянных клиентов</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-contact" class="about-modern">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2>О нашей компании</h2>
+        <p>
+          Мы — команда квалифицированных специалистов, выполняющих строительство, ремонт и реконструкцию
+          объектов по всей Европе. Наши клиенты ценят нас за прозрачность, точность сроков и безупречное качество.
+        </p>
+        <div class="about-highlights">
+          <div><i class="fa-solid fa-check-circle"></i> Сертифицированные мастера</div>
+          <div><i class="fa-solid fa-check-circle"></i> Европейские стандарты качества</div>
+          <div><i class="fa-solid fa-check-circle"></i> Индивидуальный подход к каждому клиенту</div>
+        </div>
+      </div>
+
+      <div class="contact-card" id="contact-inf">
+        <h3>Свяжитесь с нами</h3>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <p>+420 912 345 678</p>
+            
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <p>example154@gmail.com</p>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <p>Хомутов, Чехия</p>
+        </div>
+        <a href="/anket" class="contact-btn">
+          <i class="fa-solid fa-paper-plane"></i> Отправить заявку
+        </a>
+        <small>© 2025 Строительная компания</small>
+      </div>
     </div>
   </section>
 

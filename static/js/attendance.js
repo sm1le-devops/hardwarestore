@@ -40,6 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter(cb => cb.checked)
       .map(cb => cb.dataset.category);
 
+    // Если ничего не выбрано — показываем все карточки
+    if (activeCategories.length === 0) {
+      cards.forEach(card => card.classList.remove("hidden"));
+      return;
+    }
+
+    // Если выбрано что-то — показываем только выбранные
     cards.forEach(card => {
       const category = card.dataset.category;
       if (activeCategories.includes(category)) {
@@ -49,10 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
-  checkboxes.forEach(cb => cb.addEventListener("change", applyFilters));
   applyFilters();
-
+  checkboxes.forEach(cb => cb.addEventListener("change", applyFilters));
   // ===== Поиск =====
   const searchInput = document.getElementById('serviceSearch');
   searchInput?.addEventListener('input', () => {

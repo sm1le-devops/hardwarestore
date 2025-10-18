@@ -475,7 +475,7 @@ body {
 }
 
 .filter-group h4 {
-  color: #9ec9ff;
+  color: #ffffff;
   font-size: 17.6px;
   /* 16px * 1.1 */
   margin-bottom: 11px;
@@ -536,8 +536,8 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   height: 140px;
   opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.4s ease;
   /* плавное появление и смещение */
 }
 
