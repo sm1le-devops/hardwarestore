@@ -16,18 +16,21 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(10, 10, 10, 0.5); /* Сделал более прозрачным */
+  background: rgba(10, 10, 10, 0.5);
+  /* Сделал более прозрачным */
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px 30px;
   z-index: 1000;
-  backdrop-filter: blur(1px); /* Чуть сильнее размытие */
+  backdrop-filter: blur(1px);
+  /* Чуть сильнее размытие */
 }
 
 .logo-wrapper {
   display: flex;
-  align-items: center; /* центрирует по вертикали */
+  align-items: center;
+  /* центрирует по вертикали */
 }
 
 .logo {
@@ -35,19 +38,24 @@ body {
   font-weight: bold;
   white-space: nowrap;
 }
+
 .logo-link {
-  text-decoration: none; /* убираем подчеркивание */
-  color: inherit;        /* оставляем цвет текста */
+  text-decoration: none;
+  /* убираем подчеркивание */
+  color: inherit;
+  /* оставляем цвет текста */
   display: flex;
   align-items: center;
 }
+
 .logo-img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   object-fit: cover;
   border: none;
-  margin-right: 8px; /* регулирует расстояние между фото и текстом */
+  margin-right: 8px;
+  /* регулирует расстояние между фото и текстом */
 }
 
 .nav {
@@ -90,13 +98,16 @@ body {
   align-items: center;
   color: #bbb;
   font-size: 14px;
-  gap: 6px; /* Расстояние между иконкой и текстом */
+  gap: 6px;
+  /* Расстояние между иконкой и текстом */
 }
 
 .location i {
-  color:  #fff; /* Синий оттенок, можно заменить */
+  color: #fff;
+  /* Синий оттенок, можно заменить */
   font-size: 16px;
 }
+
 .lang-dropdown {
   display: flex;
   align-items: center;
@@ -108,10 +119,12 @@ body {
   border-radius: 8px;
   transition: all 0.3s ease;
 }
+
 .lang-dropdown:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.25);
 }
+
 .lang-dropdown i {
   color: #fff;
   font-size: 16px;
@@ -141,19 +154,26 @@ body {
   background: #1a1f25;
   color: #fff;
 }
+
 .menu-toggle {
   display: none;
   cursor: pointer;
   font-size: 24px;
 }
+
 .our-works {
-  font-size: 28px;
+  font-size: 32px;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
 }
+
 .chat-icon {
   position: fixed;
-  bottom: 100px; /* чуть выше от низа */
+  bottom: 100px;
+  /* чуть выше от низа */
   right: 20px;
   width: 50px;
   height: 50px;
@@ -162,18 +182,21 @@ body {
   justify-content: center;
   background-color: #06121e;
   border-radius: 50%;
-  border: 2px solid white; /* вот белая линия */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border: 2px solid white;
+  /* вот белая линия */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
   z-index: 9999;
 }
+
 .chat-icon:hover {
   transform: translateY(-5px) scale(1.1);
   background-color: #0a1f3a;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(52,152,219,0.6);
-  border-color: #3498db; /* при наведении белая линия может подсвечиваться синим */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(52, 152, 219, 0.6);
+  border-color: #3498db;
+  /* при наведении белая линия может подсвечиваться синим */
 }
 
 .chat-icon .img-wrapper {
@@ -184,6 +207,7 @@ body {
   object-fit: cover;
   transition: transform 0.3s ease;
 }
+
 .chat-icon .img-wrapper img,
 .chat-icon .img-wrapper svg {
   width: 100%;
@@ -192,8 +216,6 @@ body {
   display: block;
   transition: transform 0.3s ease;
 }
-
-
 
 .chat-icon:hover .img-wrapper img,
 .chat-icon:hover .img-wrapper svg {
@@ -254,139 +276,239 @@ body {
 /* ======== SERVICES ======== */
 .services {
   position: relative;
-  background: rgba(25, 35, 50, 0.85); /* светлее, чем карточки */
-  backdrop-filter: blur(15px);
-  padding: 80px 0;
+  background: radial-gradient(circle at 30% 50%, rgba(25, 35, 50, 0.95), rgba(10, 15, 25, 0.9));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 100px 40px;
+  /* добавил боковые отступы, чтобы карточки не упирались */
   overflow: hidden;
   text-align: center;
-  border-radius: 24px;
   max-width: 1200px;
-  margin: 60px auto;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 80px auto;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
 }
+
 .services.fade-in {
-  max-width: calc(1200px + 40px); /* расширяем контейнер на 40px */
-  margin: 60px auto; /* сохраняем центрирование */
-  padding: 80px 20px; /* можно чуть добавить паддинг слева и справа */
-  box-sizing: border-box; /* чтобы padding не ломал ширину */
+  max-width: calc(1200px + 40px);
+  /* расширяем контейнер на 40px */
+  margin: 60px auto;
+  /* сохраняем центрирование */
+  padding: 80px 20px;
+  /* можно чуть добавить паддинг слева и справа */
+  box-sizing: border-box;
+  /* чтобы padding не ломал ширину */
+}
+
+.services::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.25), transparent 70%);
+  top: -200px;
+  right: -150px;
+  filter: blur(60px);
+  animation: floatGlow 10s ease-in-out infinite alternate;
+  z-index: 0;
 }
 
 .services:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(52,152,219,0.4); /* мягкая синяя подсветка при наведении */
+  box-shadow: 0 15px 50px rgba(52, 152, 219, 0.4);
+  /* мягкая синяя подсветка при наведении */
 }
+
 .service.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+@keyframes floatGlow {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-40px, 30px);
+  }
+}
+
 .services-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  /* чтобы не вылазили карточки */
+  width: 100%;
 }
 
 .services-container {
   display: flex;
-  gap: 20px;
+  /* горизонтальная лента */
+  gap: 25px;
   overflow-x: auto;
+  overflow-y: hidden;
+  /* 🚫 отключаем вертикальный скролл */
   scroll-behavior: smooth;
-  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  /* карточки "прилипают" */
+  padding: 20px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(52, 152, 219, 0.6) rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+  /* предотвращает перенос */
 }
 
 .services-inner {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
 .services-inner.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 .services-container::-webkit-scrollbar {
-  display: none;
+  height: 8px;
 }
+
+.services-container::-webkit-scrollbar-thumb {
+  background: rgba(52, 152, 219, 0.6);
+  border-radius: 10px;
+}
+
 .service {
-  flex: 0 0 calc(25% - 15px);
-  background: rgba(10, 20, 35, 0.8); /* темный прозрачный фон */
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+  flex: 0 0 calc(25% - 20px);
+  /* ровно 4 карточки */
+  scroll-snap-align: start;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  min-width: 250px;
-  
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(40px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  position: relative;
 }
 
 .service:hover {
   transform: translateY(-10px);
-  background: rgba(25, 40, 60, 0.9); /* немного светлее при наведении */
-  box-shadow: 0 10px 30px rgba(52,152,219,0.5); /* подсветка синим */
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
 }
 
+.service:hover::after {
+  opacity: 1;
+}
 
+.service::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service:hover img {
+  transform: scale(1.08);
+}
 
 .service img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
+.service h3,
+.service p {
+  position: relative;
+  z-index: 2;
+  margin: 10px 15px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
 
 .service h3 {
   color: #fff;
   font-size: 18px;
-  margin: 12px;
+  margin-top: 15px;
 }
-
 
 .service p {
-  color: #ccc;
+  color: #bbb;
   font-size: 14px;
-  margin: 0 12px 12px 12px;
 }
 
+.service:hover h3 {
+  transform: translateY(-5px);
+  color: #4facfe;
+}
 
 /* Стрелки */
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.08); /* исходный цвет кружка */
-  border: none;
+  background: rgba(52, 152, 219, 0.35);
+  border: 2px solid rgba(52, 152, 219, 0.7);
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
+  width: 58px;
+  height: 58px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff; /* стрелка остаётся белой */
-  z-index: 2;
-  transition: background 0.3s ease; /* плавное изменение только фона */
-  backdrop-filter: blur(5px);
+  color: #fff;
+  z-index: 20;
+  /* поверх карточек */
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px rgba(52, 152, 219, 0.4);
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
 }
 
 .arrow:hover {
-  background: rgba(255, 255, 255, 0.2); /* фон кружка становится светлее */
+  background: rgba(52, 152, 219, 0.6);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 25px rgba(52, 152, 219, 0.7);
 }
 
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
-
 .arrow i {
-  font-size: 18px;
-  transition: color 0.3s ease; /* плавный переход для иконки */
+  font-size: 22px;
+}
+
+/* === Адаптив === */
+@media (max-width: 1024px) {
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ======== ABOUT ======== */
 .about-contact {
   display: flex;
-  flex-direction: column; /* можно row для горизонтали */
+  flex-direction: column;
+  /* можно row для горизонтали */
   gap: 50px;
   background: #12161b;
   color: white;
@@ -434,7 +556,7 @@ body {
     position: absolute;
     top: 60px;
     right: 20px;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.9);
     flex-direction: column;
     width: 200px;
     border-radius: 8px;
@@ -449,12 +571,15 @@ body {
     display: block;
   }
 }
+
 /* === CHAT MENU === */
 .chat-menu {
   position: fixed;
-  inset: 0; /* занимает весь экран */
+  inset: 0;
+  /* занимает весь экран */
   background: rgba(0, 0, 0, 0.6);
-  display: none; /* скрыто по умолчанию */
+  display: none;
+  /* скрыто по умолчанию */
   align-items: center;
   justify-content: center;
   z-index: 2000;
@@ -467,7 +592,8 @@ body {
 
 .chat-menu-content {
   position: relative;
-  background: #0a1f3a; /* темно-синий под цвет сайта */
+  background: #0a1f3a;
+  /* темно-синий под цвет сайта */
   padding: 30px 40px;
   border-radius: 16px;
   text-align: center;
@@ -482,6 +608,7 @@ body {
     transform: scale(0.8);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -499,7 +626,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* расстояние между иконкой и текстом */
+  gap: 8px;
+  /* расстояние между иконкой и текстом */
   width: 100%;
   background: #1c2a39;
   color: white;
@@ -516,6 +644,7 @@ body {
   background: #273b53;
   transform: scale(1.03);
 }
+
 .chat-btn svg {
   flex-shrink: 0;
 }
@@ -524,16 +653,17 @@ body {
   background: #3498db;
 }
 
-
 .chat-btn.whatsapp {
   background: linear-gradient(135deg, #25d366, #1ebd5a);
   color: #fff;
 }
+
 .chat-btn.whatsapp:hover {
   background: linear-gradient(135deg, #1ebd5a, #159c48);
   transform: scale(1.05);
   box-shadow: 0 0 12px rgba(37, 211, 102, 0.5);
 }
+
 .chat-close {
   position: absolute;
   top: 12px;
@@ -550,25 +680,22 @@ body {
   color: #3498db;
   transform: scale(1.2);
 }
+
 .chat-btn.email:hover,
 .chat-btn.phone:hover {
   background: #273b53;
   transform: scale(1.05);
 }
 
-
 .chat-btn.order:hover {
   background: #2980b9;
   transform: scale(1.05);
 }
 
-
-
-
-
 .fade-in {
   opacity: 0;
-  transform: translateY(20px); /* чуть снизу */
+  transform: translateY(20px);
+  /* чуть снизу */
   transition: opacity 1s ease, transform 1s ease;
 }
 
@@ -576,6 +703,7 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
 /* ======== ADVANTAGES ======== */
 .advantages {
   background: linear-gradient(145deg, #10141a, #1c2129);
@@ -592,14 +720,19 @@ body {
   height: 500px;
   top: -200px;
   left: -200px;
-  background: radial-gradient(circle, rgba(52,152,219,0.3), transparent 70%);
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.3), transparent 70%);
   z-index: 0;
   animation: glowMove 10s infinite alternate ease-in-out;
 }
 
 @keyframes glowMove {
-  from { transform: translate(0, 0); }
-  to { transform: translate(100px, 50px); }
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(100px, 50px);
+  }
 }
 
 .advantages h2 {
@@ -620,19 +753,19 @@ body {
 }
 
 .advantage {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 30px 20px;
   width: 280px;
   transition: all 0.4s ease;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .advantage:hover {
   transform: translateY(-10px);
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 10px 30px rgba(52,152,219,0.5);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
 }
 
 .advantage i {
@@ -684,6 +817,7 @@ body {
   font-size: 16px;
   color: #ccc;
 }
+
 .about-modern {
   background: linear-gradient(145deg, #0d1117, #161b22);
   padding: 100px 60px;
@@ -699,14 +833,10 @@ body {
   right: -150px;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(52,152,219,0.25), transparent 70%);
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.25), transparent 70%);
   animation: floatGlow 10s ease-in-out infinite alternate;
 }
 
-@keyframes floatGlow {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-40px, 30px); }
-}
 
 .about-inner {
   display: flex;
@@ -727,8 +857,10 @@ body {
   background: linear-gradient(90deg, #4facfe, #00f2fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; /* на случай будущей поддержки без префикса */
-  color: transparent; /* fallback */
+  background-clip: text;
+  /* на случай будущей поддержки без префикса */
+  color: transparent;
+  /* fallback */
 }
 
 .about-text p {
@@ -755,18 +887,18 @@ body {
 /* ===== CONTACT CARD ===== */
 .contact-card {
   flex: 1 1 320px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 40px 30px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   text-align: left;
   transition: all 0.4s ease;
 }
 
 .contact-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 40px rgba(52,152,219,0.4);
+  box-shadow: 0 12px 40px rgba(52, 152, 219, 0.4);
 }
 
 .contact-card h3 {
@@ -844,3 +976,117 @@ body {
   }
 }
 
+.chat-hint {
+  position: fixed;
+  bottom: 140px;
+  right: 100px;
+  background: rgba(15, 25, 40, 0.95);
+  color: #fff;
+  padding: 8px 14px; /* меньше, чем было */
+  border-radius: 16px; /* чуть меньше */
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 25px rgba(52, 152, 219, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  animation: floatHint 3s ease-in-out infinite;
+}
+
+/* Анимация приближения-отдаления */
+@keyframes floatHint {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04); /* чуть ближе */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* Когда появляется */
+.chat-hint.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Хвостик — часть подсказки */
+.chat-hint::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(15, 25, 40, 0.95);
+  bottom: -8px;   /* смещаем вниз за предел блока */
+  right: -8px;    /* смещаем вправо за предел блока */
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: rotate(35deg);
+  transform-origin: bottom right;
+  box-shadow: 2px 2px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Кнопка закрытия */
+.hint-close {
+  position: absolute;
+  top: 1px;      /* чуть отступ сверху */
+  left: 4px;     /* чуть отступ слева */
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s ease;
+  padding: 0;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+.chat-hint .hint-close {
+    opacity: 0;
+    pointer-events: none; /* чтобы не мешала при наведении */
+    transition: opacity 0.3s ease;
+}
+
+/* При наведении на подсказку — показываем кнопку */
+.chat-hint:hover .hint-close {
+  opacity: 1;
+  pointer-events: auto;
+  color: #fff;
+}
+
+/* Градиентный текст */
+.chat-hint .hint-text {
+  color: #fff; /* однотонный текст */
+  font-family: "Segoe UI", "Roboto", "Helvetica", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Исчезновение */
+.chat-hint.hidden {
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  pointer-events: none;
+}
+@media (max-width: 1024px) {
+  .service {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .service {
+    flex: 0 0 100%;
+  }
+}

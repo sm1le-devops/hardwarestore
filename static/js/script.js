@@ -124,21 +124,26 @@ counters.forEach(counter => observer.observe(counter));
 // ===== Появление контейнера и карточек при скролле =====
 const servicesInner = document.querySelector('.services-inner');
 const serviceCards = document.querySelectorAll('.service');
-const containerObserverOptions = { threshold: 0.2 };
+const containerObserverOptions = { threshold: 0.25 };
 
-if (servicesInner) {
+if (servicesInner && serviceCards.length > 0) {
   const containerObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Появление контейнера
+        // Плавное появление контейнера
         servicesInner.classList.add('visible');
 
-        // Появление карточек поочередно
-        serviceCards.forEach((card, index) => {
-          setTimeout(() => {
-            card.classList.add('visible');
-          }, index * 200); // задержка между карточками
-        });
+        // Поочередное появление карточек (по одной)
+        let i = 0;
+        const showNextCard = () => {
+          if (i < serviceCards.length) {
+            serviceCards[i].classList.add('visible');
+            i++;
+            setTimeout(showNextCard, 250); // интервал между карточками
+          }
+        };
+
+        showNextCard(); // запускаем показ
 
         observer.unobserve(entry.target);
       }
@@ -147,3 +152,49 @@ if (servicesInner) {
 
   containerObserver.observe(servicesInner);
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hint = document.getElementById("chatHint");
+  const closeBtn = hint?.querySelector(".hint-close");
+  const contactSection = document.getElementById("contact-inf");
+
+  if (hint) {
+    // Показать через 3 секунды
+    const showTimeout = setTimeout(() => {
+      hint.classList.add("show");
+
+      // Авто-скрытие через 7 секунд после появления
+      const hideTimeout = setTimeout(() => {
+        hint.classList.remove("show");
+        hint.classList.add("hidden");
+      }, 9000);
+
+      // Скрытие при скролле до contactSection
+      const onScroll = () => {
+        if (!contactSection) return;
+
+        const sectionTop = contactSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (sectionTop < windowHeight) {
+          // Если блок виден на экране — скрываем подсказку
+          hint.classList.remove("show");
+          hint.classList.add("hidden");
+          clearTimeout(hideTimeout);
+          window.removeEventListener("scroll", onScroll);
+        }
+      };
+
+      window.addEventListener("scroll", onScroll);
+    }, 3000);
+
+    // Закрытие по крестику
+    closeBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      hint.classList.remove("show");
+      hint.classList.add("hidden");
+      clearTimeout(showTimeout);
+    });
+  }
+});
