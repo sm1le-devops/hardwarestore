@@ -198,3 +198,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// ===== Двуязычное переключение =====
+const langSelect = document.querySelector(".lang-select");
+let currentLang = localStorage.getItem("lang") || "ru";
+
+async function loadLang(lang) {
+  try {
+    const res = await fetch(`/static/lang/${lang}.json`);
+    if (!res.ok) throw new Error("Не удалось загрузить файл перевода");
+    const translations = await res.json();
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (translations[key]) el.textContent = translations[key];
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+langSelect.addEventListener("change", (e) => {
+  const lang = e.target.value === "Русский" ? "ru" : "cs";
+  localStorage.setItem("lang", lang);
+  loadLang(lang);
+});
+
+loadLang(currentLang);
+langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
+document.documentElement.lang = lang;

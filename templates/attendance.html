@@ -4,38 +4,38 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Наши услуги</title>
-    <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
+    <title data-i18n="ourServices">Наши услуги</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='assets/favicon.ico') }}">
     <link rel="stylesheet" href="/static/css/attendance.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <!-- ===== HEADER (как у тебя) ===== -->
+    <!-- ===== HEADER ===== -->
     <header class="header">
         <a href="/" class="logo-wrapper logo-link">
             <img src="/static/assets/logo.png" class="logo-img" alt="Логотип">
-            <div class="logo">Бригада</div>
+            <div class="logo">Mason</div>
         </a>
 
         <nav class="nav" id="navbar">
-            <a href="/#hero" class="nav-link">Главная</a>
-            <a href="/attendance" class="nav-link active">Услуги</a>
-            <a href="/#services" class="nav-link">Проекты</a>
-            <a href="/#about-contact" class="nav-link">О нас</a>
-            <a href="/#contact-info" class="nav-link" id="contactLink">Контакты</a>
+            <a href="/#hero" class="nav-link" data-i18n="home">Главная</a>
+            <a href="/attendance" class="nav-link active" data-i18n="services">Услуги</a>
+            <a href="/#services" class="nav-link" data-i18n="projects">Проекты</a>
+            <a href="/#about-us" class="nav-link" data-i18n="about">О нас</a>
+            <a href="/#contact-inf" class="nav-link" id="contactLink" data-i18n="contact">Контакты</a>
         </nav>
 
         <div class="header-right">
             <div class="location">
-                <i class="fa-solid fa-location-dot"></i> Хомутов, Чехия
+                <i class="fa-solid fa-location-dot"></i> Chomutov, Czechia
             </div>
             <div class="lang-dropdown">
                 <i class="fa-solid fa-globe"></i>
                 <select class="lang-select">
                     <option>Русский</option>
-                    <option>English</option>
+                    <option>Czech</option>
                 </select>
             </div>
             <div class="menu-toggle" id="menuToggle">☰</div>
@@ -50,19 +50,20 @@
             <div class="services-layout">
                 <!-- ===== ФИЛЬТР ===== -->
                 <aside class="filter-panel">
-                    <h3>Фильтры</h3>
+                    <h3 data-i18n="filtersTitle">Фильтры</h3>
+
                     <div class="filter-group">
-                        <h4>Внутренние работы</h4>
-                        {% for ad in ads if ad.category in ["electrical", "plumbing", "painting", "tiling", "rodof",
-                        "rosof"] %}
+                        <h4 data-i18n="internalWorks">Внутренние работы</h4>
+                        {% for ad in ads if ad.category in ["electrical", "plumbing", "painting", "tiling", "rodof", "rosof"] %}
                         <label>
                             <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
                             {{ ad.title }}
                         </label>
                         {% endfor %}
                     </div>
+
                     <div class="filter-group">
-                        <h4>Внешние работы</h4>
+                        <h4 data-i18n="externalWorks">Внешние работы</h4>
                         {% for ad in ads if ad.category in ["facade", "roof", "rood", "facade-finishing"] %}
                         <label>
                             <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
@@ -74,10 +75,12 @@
 
                 <!-- ===== КАРТОЧКИ + заголовок ===== -->
                 <div class="cards-wrapper">
-                    <h2 class="cards-title">Наши услуги</h2>
+                    <h2 class="cards-title" data-i18n="ourServices">Наши услуги</h2>
+
                     <div class="search-wrapper">
                         <div class="search-box">
-                            <input type="text" id="serviceSearch" placeholder="Поиск услуг..." />
+                            <input type="text" id="serviceSearch" data-i18n-placeholder="searchPlaceholder"
+                                placeholder="Поиск услуг..." />
                             <button class="search-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -88,6 +91,7 @@
                             </button>
                         </div>
                     </div>
+
                     <div class="services-grid">
                         {% for ad in ads %}
                         <a href="/ad/{{ ad.id }}" class="service-card" data-category="{{ ad.category }}">
@@ -99,17 +103,20 @@
                 </div>
             </div>
         </section>
+
+        <!-- ===== CHAT ===== -->
         <a href="#" class="chat-icon">
             <div class="img-wrapper">
                 <img src="/static/assets/chat-icon.svg" alt="Chat">
             </div>
         </a>
+
         <div class="chat-menu">
             <div class="chat-menu-content">
                 <button class="chat-close">&times;</button>
-                <h3>Связаться с нами</h3>
+                <h3 data-i18n="contactTitle">Связаться с нами</h3>
 
-                <button class="chat-btn whatsapp">
+                <button class="chat-btn whatsapp" data-i18n="chatWhatsapp">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -118,7 +125,7 @@
                     Написать в WhatsApp
                 </button>
 
-                <button class="chat-btn email">
+                <button class="chat-btn email" data-i18n="chatEmail">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -127,7 +134,7 @@
                     Написать на почту
                 </button>
 
-                <button class="chat-btn phone">
+                <button class="chat-btn phone" data-i18n="chatPhone">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -136,7 +143,7 @@
                     Позвонить
                 </button>
 
-                <button class="chat-btn order">
+                <button class="chat-btn order" data-i18n="chatOrder">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path
@@ -150,7 +157,7 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <p>© 2025 Строительная компания. Все права защищены.</p>
+        <p data-i18n="footerRights">© 2025 Строительная компания. Все права защищены.</p>
     </footer>
 
     <script src="/static/js/attendance.js"></script>

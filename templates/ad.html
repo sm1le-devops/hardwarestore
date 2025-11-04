@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ ad.title }}</title>
-  <link rel="icon" href="/static/assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='assets/favicon.ico') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -364,69 +364,7 @@
       opacity: 1;
     }
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.3s;
-      z-index: 1000;
-    }
 
-    .modal.active {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .modal-content {
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 18px;
-      padding: 35px;
-      width: 360px;
-      text-align: center;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .modal-content input,
-    .modal-content textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 15px;
-    }
-
-    .modal-content button {
-      background: linear-gradient(90deg, #0078ff, #00c6ff);
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .modal-content button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 20px rgba(0, 120, 255, 0.3);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 20px;
-      color: #333;
-      cursor: pointer;
-    }
 
     .fade-in {
       opacity: 0;
@@ -530,93 +468,59 @@
   <header class="header">
     <a href="/" class="logo-wrapper logo-link">
       <img src="/static/assets/logo.png" class="logo-img" alt="Логотип">
-      <div class="logo">Бригада</div>
+      <div class="logo">Mason</div>
     </a>
 
+
     <nav class="nav" id="navbar">
-      <a href="/#hero" class="nav-link">Главная</a>
-      <a href="/attendance" class="nav-link active">Услуги</a>
-      <a href="/#services" class="nav-link">Проекты</a>
-      <a href="/#about-us" class="nav-link">О нас</a>
-      <a href="/#contact-inf" class="nav-link" id="contactLink">Контакты</a>
+      <a href="/#hero" class="nav-link" data-i18n="home">Главная</a>
+      <a href="/attendance" class="nav-link active" data-i18n="services">Услуги</a>
+      <a href="/#services" class="nav-link" data-i18n="projects">Проекты</a>
+      <a href="/#about-us" class="nav-link" data-i18n="about">О нас</a>
+      <a href="/#contact-inf" class="nav-link" id="contactLink" data-i18n="contact">Контакты</a>
     </nav>
 
     <div class="header-right">
       <div class="location">
-        <i class="fa-solid fa-location-dot"></i> Хомутов, Чехия
+        <i class="fa-solid fa-location-dot"></i> Chomutov, Czechia
       </div>
       <div class="lang-dropdown">
         <i class="fa-solid fa-globe"></i>
         <select class="lang-select">
           <option>Русский</option>
-          <option>English</option>
+          <option>Czech</option>
         </select>
       </div>
       <div class="menu-toggle" id="menuToggle">☰</div>
     </div>
   </header>
-  
+
   <div class="main-wrapper">
     <main>
       <section id="title" class="fade-in">
-        <h1>{{ ad.title }}</h1>
-        <p>Лучшие специалисты. Современные технологии. Качественный результат.</p>
+        <h1 data-i18n="categories.{{ ad.category }}" data-category="{{ ad.category }}">{{ ad.title }}</h1>
+        <p data-i18n="ad.slogan">Лучшие специалисты. Современные технологии. Качественный результат.</p>
       </section>
 
       <section id="description" class="fade-in">
-        <h2>Описание услуги</h2>
-        <p>Профессиональные работы по направлению {{ ad.category }}. Опытная команда, точность и ответственность.</p>
+        <h2 data-i18n="ad.descriptionTitle">Описание услуги</h2>
+        <p data-i18n="ad.descriptionText" data-title="{{ ad.title }}" data-category="{{ ad.category }}"></p>
 
         <ul class="features-list">
-          <li>Монтаж и установка
+          {% for main, subitems in ad.features.items() %}
+          <li>{{ main }}
             <ul class="sub-list">
-              <li>Установка электропроводки</li>
-              <li>Монтаж электрощитов и распределительных панелей</li>
-              <li>Установка розеток, выключателей, светильников</li>
-              <li>Подключение бытовой техники</li>
+              {% for item in subitems %}
+              <li>{{ item }}</li>
+              {% endfor %}
             </ul>
           </li>
-          <li>Ремонт и обслуживание
-            <ul class="sub-list">
-              <li>Поиск коротких замыканий</li>
-              <li>Замена поврежденных проводов и кабелей</li>
-              <li>Ремонт электрощитов и автоматов</li>
-              <li>Техническое обслуживание</li>
-            </ul>
-          </li>
-          <li>Проектирование и расчёты
-            <ul class="sub-list">
-              <li>Разработка схем электропроводки</li>
-              <li>Расчет нагрузки</li>
-              <li>Подбор оборудования</li>
-            </ul>
-          </li>
-          <li>Силовое и промышленное оборудование
-            <ul class="sub-list">
-              <li>Подключение электрических двигателей</li>
-              <li>Монтаж трансформаторов и щитов</li>
-              <li>Установка промышленных автоматов</li>
-            </ul>
-          </li>
-          <li>Освещение и умный дом
-            <ul class="sub-list">
-              <li>Монтаж наружного и внутреннего освещения</li>
-              <li>Подключение светодиодных светильников</li>
-              <li>Установка систем "умный дом"</li>
-            </ul>
-          </li>
-          <li>Безопасность и защита
-            <ul class="sub-list">
-              <li>Системы заземления и молниезащиты</li>
-              <li>Установка дифавтоматов и предохранителей</li>
-              <li>Проверка электробезопасности</li>
-            </ul>
-          </li>
+          {% endfor %}
         </ul>
       </section>
 
       <section id="gallery" class="fade-in">
-        <h2>Наши работы</h2>
+        <h2 data-i18n="ad.galleryTitle">Наши работы</h2>
         <div class="gallery">
           {% for i in range(1,5) %}
           <img src="/static/serveces/{{ ad.category }}{{ i }}.jpg" alt="{{ ad.title }} {{ i }}">
@@ -625,40 +529,29 @@
       </section>
 
       <section id="reviews" class="fade-in">
-        <h2>Отзывы клиентов</h2>
+        <h2 data-i18n="ad.reviewsTitle">Отзывы клиентов</h2>
         <div class="review"><strong>Иван:</strong> Отличная работа, качественно и вовремя!</div>
         <div class="review"><strong>Мария:</strong> Всё идеально, рекомендую!</div>
       </section>
 
       <section id="order" class="fade-in btn-center">
-        <h2>Заказать услугу</h2>
-        <p>Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
+        <h2 data-i18n="ad.orderTitle">Заказать услугу</h2>
+        <p data-i18n="ad.orderText">Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
         <a href="/anket" class="contact-btn">
-          <i class="fa-solid fa-paper-plane"></i> Отправить заявку
+          <i class="fa-solid fa-paper-plane"></i> <span data-i18n="ad.orderBtn">Отправить заявку</span>
         </a>
       </section>
     </main>
   </div>
   <div class="side-nav">
-    <a href="#title" data-title="Вверх" class="active"></a>
-    <a href="#description" data-title="Описание"></a>
-    <a href="#gallery" data-title="Галерея"></a>
-    <a href="#reviews" data-title="Отзывы"></a>
-    <a href="#order" data-title="Заказ"></a>
+    <a href="#title" data-title="Вверх" class="active" data-i18n="sideNav.top"></a>
+    <a href="#description" data-title="Описание" data-i18n="sideNav.description"></a>
+    <a href="#gallery" data-title="Галерея" data-i18n="sideNav.gallery"></a>
+    <a href="#reviews" data-title="Отзывы" data-i18n="sideNav.reviews"></a>
+    <a href="#order" data-title="Заказ" data-i18n="sideNav.order"></a>
   </div>
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <i class="fa-solid fa-xmark modal-close" id="closeModal"></i>
-      <h3>Отправить заявку</h3>
-      <form action="/anket" method="POST">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-        <input type="tel" name="phone" placeholder="Телефон" required>
-        <textarea name="message" rows="3" placeholder="Опишите услугу" required></textarea>
-        <button type="submit">Отправить</button>
-      </form>
-    </div>
-  </div>
+
 
   <script>
     // Fade in on scroll
@@ -677,26 +570,6 @@
     window.addEventListener("scroll", () => {
       document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
     });
-
-    // Modal logic
-    const modal = document.getElementById("modal");
-    const openModalBtn = document.getElementById("openModal");
-    const closeModalBtn = document.getElementById("closeModal");
-
-    if (openModalBtn) {
-      openModalBtn.onclick = e => {
-        e.preventDefault();
-        modal.classList.add("active");
-      };
-    }
-
-    if (closeModalBtn) {
-      closeModalBtn.onclick = () => modal.classList.remove("active");
-    }
-
-    window.onclick = e => {
-      if (e.target === modal) modal.classList.remove("active");
-    };
 
     // Side navigation active state & smooth scroll
     const sections = document.querySelectorAll("section");
@@ -748,6 +621,53 @@
         navbar.style.borderRadius = '10px';
       }
     };
+
+    // === Language handling ===
+    const langSelect = document.querySelector(".lang-select");
+    let currentLang = localStorage.getItem("lang") || "ru";
+
+    async function loadLang(lang) {
+      try {
+        const res = await fetch(`/static/lang/${lang}.json`);
+        const translations = await res.json();
+
+        const getNested = (obj, path) =>
+          path.split('.').reduce((o, k) => (o ? o[k] : null), obj);
+
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+          const key = el.getAttribute("data-i18n");
+          let text = getNested(translations, key);
+
+          if (text) {
+            if (el.dataset.title) text = text.replace(/\{\{\s*ad\.title\s*\}\}/g, el.dataset.title);
+            if (el.dataset.category) {
+              const categoryKey = el.dataset.category;
+              const categoryText = getNested(translations, "categories." + categoryKey) || categoryKey;
+              text = text.replace(/\{\{\s*ad\.category\s*\}\}/g, categoryText);
+            }
+          }
+
+          // ✅ корректная обработка data-title (для бокового меню)
+          if (el.tagName === "A" && el.hasAttribute("data-title")) {
+            el.setAttribute("data-title", text || el.getAttribute("data-title"));
+          } else {
+            el.textContent = text || "";
+          }
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    langSelect?.addEventListener("change", e => {
+      const lang = e.target.value === "Czech" ? "cs" : "ru";
+      localStorage.setItem("lang", lang);
+      loadLang(lang);
+    });
+
+    loadLang(currentLang);
+    langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
+    document.documentElement.lang = currentLang;
   </script>
 
 

@@ -8,7 +8,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 import os, smtplib
 from dotenv import load_dotenv
-
+import json
 # --- Загрузка .env ---
 load_dotenv()
 
@@ -18,92 +18,9 @@ router = APIRouter()
 
 # --- Статика ---
 app.mount("/static", StaticFiles(directory="static"), name="static")
-ads = [
-    # ===== Внутренние работы =====
-    {
-        "id": 1,
-        "title": "Электрика",
-        "category": "electrical",
-        "icon": "fa-lightbulb",
-        "description": "Все виды электрических работ внутри помещений.",
-        "image": "/static/assets/restoration.jpg"
-    },
-    {
-        "id": 2,
-        "title": "Сантехника",
-        "category": "plumbing",
-        "icon": "fa-faucet",
-        "description": "Монтаж и ремонт сантехники.",
-        "image": "/static/assets/byt1.jpg"
-    },
-    {
-        "id": 3,
-        "title": "Малярные работы",
-        "category": "painting",
-        "icon": "fa-paint-roller",
-        "description": "Покраска стен, потолков и фасадов.",
-        "image": "/static/assets/byt.jpg"
-    },
-    {
-        "id": 4,
-        "title": "Плиточные работы",
-        "category": "tiling",
-        "icon": "fa-border-all",
-        "description": "Укладка плитки любой сложности.",
-        "image": "/static/assets/restoration.jpg"
-    },
-    {
-        "id": 5,
-        "title": "Демонтажные работы",
-        "category": "rodof",
-        "icon": "fa-trash-can",
-        "description": "Демонтаж старых конструкций и ремонтных элементов.",
-        "image": "/static/assets/restoration.jpg"
-    },
-    {
-        "id": 6,
-        "title": "Гипсокартонные конструкции",
-        "category": "rosof",
-        "icon": "fa-building-columns",
-        "description": "Монтаж перегородок, потолков и декоративных конструкций из ГКЛ.",
-        "image": "/static/assets/restoration.jpg"
-    },
 
-    # ===== Внешние работы =====
-    {
-        "id": 7,
-        "title": "Фасадные работы",
-        "category": "facade",
-        "icon": "fa-house-chimney",
-        "description": "Отделка фасадов и наружные работы.",
-        "image": "/static/assets/restoration.jpg"
-    },
-    {
-        "id": 8,
-        "title": "Кровельные работы",
-        "category": "roof",
-        "icon": "fa-hammer",
-        "description": "Монтаж и ремонт крыш любого типа.",
-        "image": "/static/assets/restoration.jpg"
-    },
-    {
-        "id": 9,
-        "title": "Реставрационные работы",
-        "category": "rood",
-        "icon": "fa-person-digging",
-        "description": "Восстановление старых конструкций и ремонт.",
-        "image": "/static/assets/restoration.jpg"
-    },
-    {
-        "id": 10,
-        "title": "Отделка фасадов",
-        "category": "facade-finishing",
-        "icon": "fa-paintbrush",
-        "description": "Финишная отделка фасадов зданий.",
-        "image": "/static/assets/restoration.jpg"
-    }
-]
-
+with open("static/data/services.json", "r", encoding="utf-8") as f:
+    ads = json.load(f)
 # --- Шаблоны ---
 templates = Jinja2Templates(directory="templates")
 

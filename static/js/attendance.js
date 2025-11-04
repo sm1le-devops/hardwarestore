@@ -126,3 +126,61 @@ document.querySelector('.chat-btn.phone')?.addEventListener('click', () => {
 document.querySelector('.chat-btn.order')?.addEventListener('click', () => {
   window.location.href = '/anket';
 });
+
+
+const langSelect = document.querySelector(".lang-select");
+let currentLang = localStorage.getItem("lang") || "ru";
+
+async function loadLang(lang) {
+  try {
+    const res = await fetch(`/static/lang/${lang}.json`);
+    if (!res.ok) throw new Error("Не удалось загрузить файл перевода");
+    const translations = await res.json();
+
+    const getNested = (obj, path) => path.split('.').reduce((o, k) => (o || {})[k], obj);
+
+    // Перевод элементов с data-i18n
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      const text = getNested(translations, key);
+      if (text) el.textContent = text;
+    });
+
+    // Перевод placeholder
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      const text = getNested(translations, key);
+      if (text) el.placeholder = text;
+    });
+
+    // Перевод категорий карточек
+    document.querySelectorAll(".service-card h3").forEach(el => {
+      const category = el.closest(".service-card")?.dataset.category;
+      const text = getNested(translations, `categories.${category}`);
+      if (text) el.textContent = text;
+    });
+
+    // Перевод фильтров
+    document.querySelectorAll(".filter-checkbox").forEach(el => {
+      const category = el.dataset.category;
+      const label = el.closest("label");
+      const text = getNested(translations, `categories.${category}`);
+      if (text && label) label.lastChild.textContent = ` ${text}`;
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// Смена языка
+langSelect?.addEventListener("change", e => {
+  const lang = e.target.value === "Czech" ? "cs" : "ru";
+  localStorage.setItem("lang", lang);
+  loadLang(lang);
+});
+
+// Инициализация языка при загрузке
+loadLang(currentLang);
+langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
+document.documentElement.lang = lang;

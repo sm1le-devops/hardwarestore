@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Заказ услуг</title>
-  <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='assets/favicon.ico') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <link rel="stylesheet" href="/static/css/style.css" />
   <style>
@@ -282,7 +282,7 @@
       background: #3498db;
     }
 
-    
+
 
     .chat-btn.whatsapp {
       background: linear-gradient(135deg, #25d366, #1ebd5a);
@@ -318,7 +318,7 @@
       transform: scale(1.05);
     }
 
-    
+
 
     .chat-btn.order:hover {
       background: #2980b9;
@@ -339,26 +339,26 @@
   <header class="header">
     <a href="/" class="logo-wrapper logo-link">
       <img src="/static/assets/logo.png" class="logo-img" alt="Логотип">
-      <div class="logo">Бригада</div>
+      <div class="logo">Mason</div>
     </a>
 
     <nav class="nav" id="navbar">
-      <a href="/#hero" class="nav-link">Главная</a>
-      <a href="/attendance" class="nav-link">Услуги</a>
-      <a href="/#services" class="nav-link">Проекты</a>
-      <a href="/#about-us" class="nav-link">О нас</a>
-      <a href="/#contact-inf" class="nav-link" id="contactLink">Контакты</a>
+      <a href="/#hero" class="nav-link" data-i18n="home">Главная</a>
+      <a href="/attendance" class="nav-link" data-i18n="services">Услуги</a>
+      <a href="/#services" class="nav-link" data-i18n="projects">Проекты</a>
+      <a href="/#about-us" class="nav-link" data-i18n="about">О нас</a>
+      <a href="/#contact-inf" class="nav-link" id="contactLink" data-i18n="contact">Контакты</a>
     </nav>
 
     <div class="header-right">
       <div class="location">
-        <i class="fa-solid fa-location-dot"></i> Хомутов, Чехия
+        <i class="fa-solid fa-location-dot"></i> Chomutov, Czechia
       </div>
       <div class="lang-dropdown">
         <i class="fa-solid fa-globe"></i>
         <select class="lang-select">
           <option>Русский</option>
-          <option>English</option>
+          <option>Czech</option>
         </select>
       </div>
       <div class="menu-toggle" id="menuToggle">☰</div>
@@ -373,28 +373,31 @@
           <circle cx="26" cy="26" r="25" fill="none" stroke="white" stroke-width="2" />
           <path fill="none" stroke="white" stroke-width="4" d="M14 27 l10 10 l14 -14" />
         </svg>
-        <p>Отправлено</p>
+        <p data-i18n="sent">Отправлено</p>
       </div>
 
-      <h2>Оставить заявку</h2>
+      <h2 data-i18n="leaveRequest">Оставить заявку</h2>
 
-      <label for="name">Имя и фамилия</label>
-      <input type="text" id="name" name="name" placeholder="Ваше имя и фамилия" required>
+      <label for="name" data-i18n="labelName">Имя и фамилия</label>
+      <input type="text" id="name" name="name" placeholder="Ваше имя и фамилия" data-i18n-placeholder="placeholderName"
+        required>
 
-      <label for="phone">Телефон</label>
-      <input type="tel" id="phone" name="phone" placeholder="+420 xxx xxx xxx" required>
+      <label for="phone" data-i18n="labelPhone">Телефон</label>
+      <input type="tel" id="phone" name="phone" placeholder="+420 xxx xxx xxx" data-i18n-placeholder="placeholderPhone"
+        required>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+      <label for="email" data-i18n="labelEmail">Email</label>
+      <input type="email" id="email" name="email" placeholder="example@gmail.com"
+        data-i18n-placeholder="placeholderEmail" required>
 
-      <label for="description">Описание заказа</label>
+      <label for="description" data-i18n="labelDescription">Описание заказа</label>
       <textarea id="description" name="description" placeholder="Кратко опишите, какие услуги нужны"
-        required></textarea>
+        data-i18n-placeholder="placeholderDescription" required></textarea>
 
-      <label for="photo">Прикрепить фото (опционально)</label>
+      <label for="photo" data-i18n="labelPhoto">Прикрепить фото (опционально)</label>
       <input type="file" id="photo" name="photo" accept="image/*" multiple>
-
-      <button type="submit">Отправить заявку</button>
+      
+      <button type="submit" data-i18n="btnSubmit">Отправить заявку</button>
     </form>
   </section>
   <a href="#" class="chat-icon">
@@ -405,9 +408,9 @@
   <div class="chat-menu">
     <div class="chat-menu-content">
       <button class="chat-close">&times;</button>
-      <h3>Связаться с нами</h3>
+      <h3 data-i18n="contactTitle">Связаться с нами</h3>
 
-      <button class="chat-btn whatsapp">
+      <button class="chat-btn whatsapp" data-i18n="chatWhatsapp">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
           <path
             d="M20.52 3.48A11.9 11.9 0 0 0 12.02 0C5.37 0 .02 5.36.02 12c0 2.11.55 4.16 1.59 5.98L0 24l6.23-1.63A11.92 11.92 0 0 0 12.02 24C18.67 24 24 18.64 24 12c0-3.19-1.24-6.19-3.48-8.52zM12.02 22a9.87 9.87 0 0 1-5.1-1.4l-.36-.21-3.7.97.99-3.6-.24-.38A9.96 9.96 0 0 1 2.02 12c0-5.52 4.49-10 10-10s10 4.48 10 10-4.49 10-10 10zm5.65-7.14c-.31-.16-1.83-.9-2.12-1.01-.29-.11-.5-.16-.7.15-.2.31-.8 1.01-.97 1.22-.18.2-.36.23-.67.08-.31-.15-1.32-.49-2.52-1.56-.93-.82-1.55-1.84-1.74-2.15-.18-.31-.02-.48.13-.63.13-.13.31-.34.47-.51.15-.17.2-.29.31-.49.1-.2.05-.37-.03-.52-.08-.15-.7-1.68-.96-2.31-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37s-1.05 1.03-1.05 2.51 1.08 2.91 1.23 3.11c.15.2 2.12 3.25 5.14 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.83-.75 2.09-1.47.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.35z" />
@@ -415,7 +418,7 @@
         Написать в WhatsApp
       </button>
 
-      <button class="chat-btn email">
+      <button class="chat-btn email" data-i18n="chatEmail">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
           <path
             d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8l8 5 8-5v10H4z" />
@@ -423,7 +426,7 @@
         Написать на почту
       </button>
 
-      <button class="chat-btn phone">
+      <button class="chat-btn phone" data-i18n="chatPhone">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
           <path
             d="M6.62 10.79a15.564 15.564 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.13.33.04.7-.24 1.02l-2.21 2.2z" />
@@ -431,7 +434,7 @@
         Позвонить
       </button>
 
-      <button class="chat-btn order">
+      <button class="chat-btn order" data-i18n="chatOrder">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
           <path
             d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1z" />
@@ -526,6 +529,46 @@
       chatMenu?.classList.remove('show');
     });
 
+
+  </script>
+  <script>
+    const langSelect = document.querySelector(".lang-select");
+    let currentLang = localStorage.getItem("lang") || "ru";
+
+    // Функция загрузки JSON с переводом
+    async function loadLang(lang) {
+      try {
+        const res = await fetch(`/static/lang/${lang}.json`);
+        if (!res.ok) throw new Error("Не удалось загрузить файл перевода");
+        const translations = await res.json();
+
+        // Перевод текстов
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+          const key = el.getAttribute("data-i18n");
+          if (translations[key]) el.textContent = translations[key];
+        });
+
+        // Перевод placeholder
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          if (translations[key]) el.placeholder = translations[key];
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Смена языка через select
+    langSelect.addEventListener("change", (e) => {
+      const lang = e.target.value === "Русский" ? "ru" : "cs";
+      localStorage.setItem("lang", lang);
+      loadLang(lang);
+    });
+
+    // Загрузка языка при старте
+    loadLang(currentLang);
+    langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
+    document.documentElement.lang = lang;
   </script>
 </body>
 
