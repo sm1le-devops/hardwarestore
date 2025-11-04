@@ -19,8 +19,9 @@ router = APIRouter()
 # --- Статика ---
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-with open("static/data/services.json", "r", encoding="utf-8") as f:
-    ads = json.load(f)
+with open("static/lang/ru.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+    ads = data.get("servicesList", [])
 # --- Шаблоны ---
 templates = Jinja2Templates(directory="templates")
 

@@ -508,10 +508,13 @@
 
         <ul class="features-list">
           {% for main, subitems in ad.features.items() %}
-          <li>{{ main }}
+          <li data-i18n="features.{{ ad.category }}.{{ main | replace(' ', '_') }}">
+            {{ main }}
             <ul class="sub-list">
               {% for item in subitems %}
-              <li>{{ item }}</li>
+              <li data-i18n="features.{{ ad.category }}.{{ main | replace(' ', '_') }}.{{ loop.index0 }}">
+                {{ item }}
+              </li>
               {% endfor %}
             </ul>
           </li>
@@ -529,9 +532,8 @@
       </section>
 
       <section id="reviews" class="fade-in">
-        <h2 data-i18n="ad.reviewsTitle">Отзывы клиентов</h2>
-        <div class="review"><strong>Иван:</strong> Отличная работа, качественно и вовремя!</div>
-        <div class="review"><strong>Мария:</strong> Всё идеально, рекомендую!</div>
+        <h2 id="reviews-title"></h2>
+        <div id="reviews-list"></div>
       </section>
 
       <section id="order" class="fade-in btn-center">
@@ -552,9 +554,24 @@
   </div>
 
 
-
   <script>
-    // Fade in on scroll
+    function renderReviews(translations) {
+      const reviewsTitle = translations.reviews.reviewsTitle;
+      const reviews = translations.reviews.reviews;
+
+      document.getElementById('reviews-title').textContent = reviewsTitle;
+
+      const reviewsList = document.getElementById('reviews-list');
+      reviewsList.innerHTML = "";
+      reviews.forEach(review => {
+        const div = document.createElement('div');
+        div.className = "review";
+        div.innerHTML = `<strong>${review.name}:</strong> ${review.text}`;
+        reviewsList.appendChild(div);
+      });
+    }
+
+    // === Анимации ===
     const faders = document.querySelectorAll('.fade-in');
     const appear = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -566,25 +583,16 @@
     }, { threshold: 0.3 });
     faders.forEach(f => appear.observe(f));
 
-    // Header scroll effect
-    window.addEventListener("scroll", () => {
-      document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 50);
-    });
-
-    // Side navigation active state & smooth scroll
+    // === Навигация при скролле ===
     const sections = document.querySelectorAll("section");
     const navDots = document.querySelectorAll(".side-nav a");
 
     function updateActiveDot() {
       let current = "";
       const scrollPos = window.scrollY + window.innerHeight / 3;
-
       sections.forEach(sec => {
-        if (scrollPos >= sec.offsetTop) {
-          current = sec.getAttribute("id");
-        }
+        if (scrollPos >= sec.offsetTop) current = sec.getAttribute("id");
       });
-
       navDots.forEach(dot => {
         dot.classList.remove("active");
         if (dot.getAttribute("href") === "#" + current) {
@@ -592,22 +600,12 @@
         }
       });
     }
-
     window.addEventListener("scroll", updateActiveDot);
     window.addEventListener("load", updateActiveDot);
 
-    navDots.forEach(dot => {
-      dot.addEventListener("click", e => {
-        e.preventDefault();
-        const target = document.querySelector(dot.getAttribute("href"));
-        target.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-
-    // Menu toggle for mobile
+    // === Меню для мобильных ===
     const menuToggle = document.getElementById('menuToggle');
     const navbar = document.getElementById('navbar');
-
     menuToggle.onclick = () => {
       const isVisible = navbar.style.display === 'flex';
       navbar.style.display = isVisible ? 'none' : 'flex';
@@ -622,7 +620,7 @@
       }
     };
 
-    // === Language handling ===
+    // === Языки ===
     const langSelect = document.querySelector(".lang-select");
     let currentLang = localStorage.getItem("lang") || "ru";
 
@@ -631,6 +629,11 @@
         const res = await fetch(`/static/lang/${lang}.json`);
         const translations = await res.json();
 
+        // Если на странице есть категория, загружаем её данные
+        const category = document.querySelector("[data-category]")?.dataset.category;
+        const ad = translations.servicesList.find(s => s.category === category);
+
+        // --- Тексты из JSON по ключам data-i18n ---
         const getNested = (obj, path) =>
           path.split('.').reduce((o, k) => (o ? o[k] : null), obj);
 
@@ -638,24 +641,49 @@
           const key = el.getAttribute("data-i18n");
           let text = getNested(translations, key);
 
-          if (text) {
-            if (el.dataset.title) text = text.replace(/\{\{\s*ad\.title\s*\}\}/g, el.dataset.title);
-            if (el.dataset.category) {
-              const categoryKey = el.dataset.category;
-              const categoryText = getNested(translations, "categories." + categoryKey) || categoryKey;
-              text = text.replace(/\{\{\s*ad\.category\s*\}\}/g, categoryText);
-            }
+          // Замена {{ ad.title }} и {{ ad.category }}
+          if (text && ad) {
+            text = text.replace(/\{\{\s*ad\.title\s*\}\}/g, ad.title);
+            const categoryText = getNested(translations, "categories." + ad.category) || ad.category;
+            text = text.replace(/\{\{\s*ad\.category\s*\}\}/g, categoryText);
           }
 
-          // ✅ корректная обработка data-title (для бокового меню)
           if (el.tagName === "A" && el.hasAttribute("data-title")) {
             el.setAttribute("data-title", text || el.getAttribute("data-title"));
-          } else {
-            el.textContent = text || "";
+          } else if (text) {
+            el.textContent = text;
           }
+
         });
+        if (translations.reviews) {
+          renderReviews(translations);
+        }
+        // --- Если это страница услуги, заполним динамически контент ---
+        if (ad) {
+          document.querySelector("h1").textContent = ad.title;
+          document.querySelector("#description p").textContent = ad.description;
+
+          const featuresContainer = document.querySelector(".features-list");
+          if (featuresContainer) {
+            featuresContainer.innerHTML = ""; // очистить
+            Object.entries(ad.features).forEach(([main, subs]) => {
+              const li = document.createElement("li");
+              li.textContent = main;
+              const subList = document.createElement("ul");
+              subList.className = "sub-list";
+              subs.forEach(sub => {
+                const subLi = document.createElement("li");
+                subLi.textContent = sub;
+                subList.appendChild(subLi);
+              });
+              li.appendChild(subList);
+              featuresContainer.appendChild(li);
+            });
+          }
+        }
+
       } catch (err) {
-        console.error(err);
+        console.error("Ошибка загрузки перевода:", err);
       }
     }
 
