@@ -37,206 +37,202 @@
           <option>Czech</option>
         </select>
       </div>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+  </header>
+
+  <!-- Герой-секция -->
+  <section id="hero" class="hero">
+    <img src="/static/assets/byt1.jpg" alt="hero" class="hero-bg">
+    <div class="hero-content">
+      <h1 class="fade-in" data-i18n="heroTitle">Ваш надёжный партнёр в строительстве</h1>
+      <p class="fade-in" data-i18n="heroText">
+        Мы успешно реализуем проекты во многих странах Европы.
+        От ремонта квартир до масштабных фасадных работ —
+        наш опыт и профессионализм гарантируют качество и надёжность.
+      </p>
+      <a href="/attendance" class="btn fade-in" data-i18n="heroBtn">Услуги</a>
+    </div>
+    <a href="#" class="chat-icon">
+      <div class="img-wrapper">
+        <img src="/static/assets/chat-icon.svg" alt="Chat">
+      </div>
+    </a>
+    <div class="chat-hint" id="chatHint">
+      <div class="hint-text" data-i18n="contactTitle">Свяжитесь с нами</div>
+      <button class="hint-close" aria-label="Закрыть подсказку">&times;</button>
+    </div>
+    <div class="chat-menu">
+      <div class="chat-menu-content">
+        <button class="chat-close">&times;</button>
+        <h3 data-i18n="contactTitle">Связаться с нами</h3>
+
+        <button class="chat-btn whatsapp" data-i18n="chatWhatsapp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20.52 3.48A11.9 11.9 0 0 0 12.02 0C5.37 0 .02 5.36.02 12c0 2.11.55 4.16 1.59 5.98L0 24l6.23-1.63A11.92 11.92 0 0 0 12.02 24C18.67 24 24 18.64 24 12c0-3.19-1.24-6.19-3.48-8.52zM12.02 22a9.87 9.87 0 0 1-5.1-1.4l-.36-.21-3.7.97.99-3.6-.24-.38A9.96 9.96 0 0 1 2.02 12c0-5.52 4.49-10 10-10s10 4.48 10 10-4.49 10-10 10zm5.65-7.14c-.31-.16-1.83-.9-2.12-1.01-.29-.11-.5-.16-.7.15-.2.31-.8 1.01-.97 1.22-.18.2-.36.23-.67.08-.31-.15-1.32-.49-2.52-1.56-.93-.82-1.55-1.84-1.74-2.15-.18-.31-.02-.48.13-.63.13-.13.31-.34.47-.51.15-.17.2-.29.31-.49.1-.2.05-.37-.03-.52-.08-.15-.7-1.68-.96-2.31-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37s-1.05 1.03-1.05 2.51 1.08 2.91 1.23 3.11c.15.2 2.12 3.25 5.14 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.83-.75 2.09-1.47.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.35z" />
+          </svg>
+          Написать в WhatsApp
+        </button>
+
+        <button class="chat-btn email" data-i18n="chatEmail">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8l8 5 8-5v10H4z" />
+          </svg>
+          Написать на почту
+        </button>
+
+        <button class="chat-btn phone" data-i18n="chatPhone">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M6.62 10.79a15.564 15.564 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.13.33.04.7-.24 1.02l-2.21 2.2z" />
+          </svg>
+          Позвонить
+        </button>
+
+        <button class="chat-btn order" data-i18n="chatOrder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1z" />
+          </svg>
+          Заказать услуги
+        </button>
+      </div>
     </div>
 
-    <!-- ВЫНОСИМ СЮДА! -->
-    <div class="menu-toggle" id="menuToggle">☰</div>
+  </section>
 
-    <!-- Герой-секция -->
-    <section id="hero" class="hero">
-      <img src="/static/assets/byt1.jpg" alt="hero" class="hero-bg">
-      <div class="hero-content">
-        <h1 class="fade-in" data-i18n="heroTitle">Ваш надёжный партнёр в строительстве</h1>
-        <p class="fade-in" data-i18n="heroText">
-          Мы успешно реализуем проекты во многих странах Европы.
-          От ремонта квартир до масштабных фасадных работ —
-          наш опыт и профессионализм гарантируют качество и надёжность.
+  <!-- Услуги -->
+  <section id="services" class="services fade-in">
+    <div class="services-inner">
+      <h3 class="our-works" data-i18n="ourProjects">Наши проекты</h3>
+      <div class="services-wrapper">
+        <button class="arrow left" id="scrollLeft">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="services-container" id="servicesContainer">
+          <div class="service">
+            <img src="/static/assets/living-room.jpg" alt="Ремонт квартиры" />
+            <h3 data-i18n="byt">Ремонт квартиры</h3>
+            <p data-i18n="byt1">в Чехии</p>
+          </div>
+          <div class="service">
+            <img src="/static/assets/facade.jpg" alt="Фасадные работы" />
+            <h3 data-i18n="fasade">Фасадные работы</h3>
+            <p data-i18n="fasade1">в Германии</p>
+          </div>
+          <div class="service">
+            <img src="/static/assets/restoration.jpg" alt="Восстановление памятников архитектуры" />
+            <h3 data-i18n="pamet">Восстановление памятников</h3>
+            <p data-i18n="pamet1">в Европе</p>
+          </div>
+          <div class="service">
+            <img src="/static/assets/byt.jpg" alt="Кровельные работы" />
+            <h3 data-i18n="krovrab">Кровельные работы</h3>
+            <p data-i18n="krovrab1">в Нидерландах</p>
+          </div>
+          <div class="service">
+            <img src="/static/assets/byt1.jpg" alt="Интерьерный ремонт" />
+            <h3 data-i18n="interue">Интерьерный ремонт</h3>
+            <p data-i18n="interue1">в Чехии</p>
+          </div>
+          <div class="service">
+            <img src="/static/assets/living-room.jpg" alt="Проектирование" />
+            <h3 data-i18n="projecting">Проектирование</h3>
+            <p data-i18n="projecting1">по всей Европе</p>
+          </div>
+        </div>
+
+        <button class="arrow right" id="scrollRight">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Преимущества -->
+  <section class="advantages" id="about-us">
+    <h2 data-i18n="advantagesTitle">Почему выбирают нас</h2>
+    <div class="advantages-container">
+      <div class="advantage">
+        <i class="fa-solid fa-helmet-safety"></i>
+        <h3 data-i18n="advantage1Title">Профессионализм</h3>
+        <p data-i18n="advantage1Text">Наши специалисты имеют более 7 лет опыта.</p>
+      </div>
+      <div class="advantage">
+        <i class="fa-solid fa-building"></i>
+        <h3 data-i18n="advantage2Title">Современные технологии</h3>
+        <p data-i18n="advantage2Text">Мы применяем инновационные материалы и методы, обеспечивая долговечность и надёжность.</p>
+      </div>
+      <div class="advantage">
+        <i class="fa-solid fa-handshake"></i>
+        <h3 data-i18n="advantage3Title">Ответственность</h3>
+        <p data-i18n="advantage3Text">Каждый проект выполняется точно в срок — с гарантией качества и прозрачным бюджетом.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Счётчики -->
+  <section class="stats" id="about-contact">
+    <div class="stats-container">
+      <div class="stat">
+        <span class="number" data-target="7">0</span>
+        <p data-i18n="yearsr">лет на рынке</p>
+      </div>
+      <div class="stat">
+        <span class="number" data-target="53">0</span>
+        <p data-i18n="sycesspr">успешных проектов</p>
+      </div>
+      <div class="stat">
+        <span class="number" data-target="32">0</span>
+        <p data-i18n="cliensreg">постоянных клиентов</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-contact" class="about-modern">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2 data-i18n="aboutCompanyTitle">О нашей компании</h2>
+        <p data-i18n="aboutCompanyText">
+          Мы — команда квалифицированных специалистов, выполняющих строительство, ремонт и реконструкцию
+          объектов по всей Европе. Наши клиенты ценят нас за прозрачность, точность сроков и безупречное качество.
         </p>
-        <a href="/attendance" class="btn fade-in" data-i18n="heroBtn">Услуги</a>
-      </div>
-      <a href="#" class="chat-icon">
-        <div class="img-wrapper">
-          <img src="/static/assets/chat-icon.svg" alt="Chat">
-        </div>
-      </a>
-      <div class="chat-hint" id="chatHint">
-        <div class="hint-text" data-i18n="contactTitle">Свяжитесь с нами</div>
-        <button class="hint-close" aria-label="Закрыть подсказку">&times;</button>
-      </div>
-      <div class="chat-menu">
-        <div class="chat-menu-content">
-          <button class="chat-close">&times;</button>
-          <h3 data-i18n="contactTitle">Связаться с нами</h3>
-
-          <button class="chat-btn whatsapp" data-i18n="chatWhatsapp">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M20.52 3.48A11.9 11.9 0 0 0 12.02 0C5.37 0 .02 5.36.02 12c0 2.11.55 4.16 1.59 5.98L0 24l6.23-1.63A11.92 11.92 0 0 0 12.02 24C18.67 24 24 18.64 24 12c0-3.19-1.24-6.19-3.48-8.52zM12.02 22a9.87 9.87 0 0 1-5.1-1.4l-.36-.21-3.7.97.99-3.6-.24-.38A9.96 9.96 0 0 1 2.02 12c0-5.52 4.49-10 10-10s10 4.48 10 10-4.49 10-10 10zm5.65-7.14c-.31-.16-1.83-.9-2.12-1.01-.29-.11-.5-.16-.7.15-.2.31-.8 1.01-.97 1.22-.18.2-.36.23-.67.08-.31-.15-1.32-.49-2.52-1.56-.93-.82-1.55-1.84-1.74-2.15-.18-.31-.02-.48.13-.63.13-.13.31-.34.47-.51.15-.17.2-.29.31-.49.1-.2.05-.37-.03-.52-.08-.15-.7-1.68-.96-2.31-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37s-1.05 1.03-1.05 2.51 1.08 2.91 1.23 3.11c.15.2 2.12 3.25 5.14 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.83-.75 2.09-1.47.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.35z" />
-            </svg>
-            Написать в WhatsApp
-          </button>
-
-          <button class="chat-btn email" data-i18n="chatEmail">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8l8 5 8-5v10H4z" />
-            </svg>
-            Написать на почту
-          </button>
-
-          <button class="chat-btn phone" data-i18n="chatPhone">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M6.62 10.79a15.564 15.564 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.13.33.04.7-.24 1.02l-2.21 2.2z" />
-            </svg>
-            Позвонить
-          </button>
-
-          <button class="chat-btn order" data-i18n="chatOrder">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1z" />
-            </svg>
-            Заказать услуги
-          </button>
+        <div class="about-highlights">
+          <div data-i18n="highlight1"><i class="fa-solid fa-check-circle" ></i> Сертифицированные мастера</div>
+          <div data-i18n="highlight2"><i class="fa-solid fa-check-circle" ></i> Европейские стандарты качества</div>
+          <div data-i18n="highlight3"><i class="fa-solid fa-check-circle"></i> Индивидуальный подход к каждому клиенту</div>
         </div>
       </div>
 
-    </section>
+      <div class="contact-card" id="contact-inf">
+        <h3 data-i18n="contactTitle">Свяжитесь с нами</h3>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <p>+420 912 345 678</p>
 
-    <!-- Услуги -->
-    <section id="services" class="services fade-in">
-      <div class="services-inner">
-        <h3 class="our-works" data-i18n="ourProjects">Наши проекты</h3>
-        <div class="services-wrapper">
-          <button class="arrow left" id="scrollLeft">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-
-          <div class="services-container" id="servicesContainer">
-            <div class="service">
-              <img src="/static/assets/living-room.jpg" alt="Ремонт квартиры" />
-              <h3 data-i18n="byt">Ремонт квартиры</h3>
-              <p data-i18n="byt1">в Чехии</p>
-            </div>
-            <div class="service">
-              <img src="/static/assets/facade.jpg" alt="Фасадные работы" />
-              <h3 data-i18n="fasade">Фасадные работы</h3>
-              <p data-i18n="fasade1">в Германии</p>
-            </div>
-            <div class="service">
-              <img src="/static/assets/restoration.jpg" alt="Восстановление памятников архитектуры" />
-              <h3 data-i18n="pamet">Восстановление памятников</h3>
-              <p data-i18n="pamet1">в Европе</p>
-            </div>
-            <div class="service">
-              <img src="/static/assets/byt.jpg" alt="Кровельные работы" />
-              <h3 data-i18n="krovrab">Кровельные работы</h3>
-              <p data-i18n="krovrab1">в Нидерландах</p>
-            </div>
-            <div class="service">
-              <img src="/static/assets/byt1.jpg" alt="Интерьерный ремонт" />
-              <h3 data-i18n="interue">Интерьерный ремонт</h3>
-              <p data-i18n="interue1">в Чехии</p>
-            </div>
-            <div class="service">
-              <img src="/static/assets/living-room.jpg" alt="Проектирование" />
-              <h3 data-i18n="projecting">Проектирование</h3>
-              <p data-i18n="projecting1">по всей Европе</p>
-            </div>
-          </div>
-
-          <button class="arrow right" id="scrollRight">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Преимущества -->
-    <section class="advantages" id="about-us">
-      <h2 data-i18n="advantagesTitle">Почему выбирают нас</h2>
-      <div class="advantages-container">
-        <div class="advantage">
-          <i class="fa-solid fa-helmet-safety"></i>
-          <h3 data-i18n="advantage1Title">Профессионализм</h3>
-          <p data-i18n="advantage1Text">Наши специалисты имеют более 7 лет опыта.</p>
-        </div>
-        <div class="advantage">
-          <i class="fa-solid fa-building"></i>
-          <h3 data-i18n="advantage2Title">Современные технологии</h3>
-          <p data-i18n="advantage2Text">Мы применяем инновационные материалы и методы, обеспечивая долговечность и
-            надёжность.</p>
-        </div>
-        <div class="advantage">
-          <i class="fa-solid fa-handshake"></i>
-          <h3 data-i18n="advantage3Title">Ответственность</h3>
-          <p data-i18n="advantage3Text">Каждый проект выполняется точно в срок — с гарантией качества и прозрачным
-            бюджетом.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Счётчики -->
-    <section class="stats" id="about-contact">
-      <div class="stats-container">
-        <div class="stat">
-          <span class="number" data-target="7">0</span>
-          <p data-i18n="yearsr">лет на рынке</p>
-        </div>
-        <div class="stat">
-          <span class="number" data-target="53">0</span>
-          <p data-i18n="sycesspr">успешных проектов</p>
-        </div>
-        <div class="stat">
-          <span class="number" data-target="32">0</span>
-          <p data-i18n="cliensreg">постоянных клиентов</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about-contact" class="about-modern">
-      <div class="about-inner">
-        <div class="about-text">
-          <h2 data-i18n="aboutCompanyTitle">О нашей компании</h2>
-          <p data-i18n="aboutCompanyText">
-            Мы — команда квалифицированных специалистов, выполняющих строительство, ремонт и реконструкцию
-            объектов по всей Европе. Наши клиенты ценят нас за прозрачность, точность сроков и безупречное качество.
-          </p>
-          <div class="about-highlights">
-            <div data-i18n="highlight1"><i class="fa-solid fa-check-circle"></i> Сертифицированные мастера</div>
-            <div data-i18n="highlight2"><i class="fa-solid fa-check-circle"></i> Европейские стандарты качества</div>
-            <div data-i18n="highlight3"><i class="fa-solid fa-check-circle"></i> Индивидуальный подход к каждому клиенту
-            </div>
           </div>
         </div>
-
-        <div class="contact-card" id="contact-inf">
-          <h3 data-i18n="contactTitle">Свяжитесь с нами</h3>
-          <div class="contact-item">
-            <i class="fa-solid fa-phone"></i>
-            <div>
-              <p>+420 912 345 678</p>
-
-            </div>
-          </div>
-          <div class="contact-item">
-            <i class="fa-solid fa-envelope"></i>
-            <p>example154@gmail.com</p>
-          </div>
-          <div class="contact-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <p>Chomutov, Czechia</p>
-          </div>
-          <a href="/anket" class="contact-btn" data-i18n="contactBtn">
-            <i class="fa-solid fa-paper-plane"></i> Отправить заявку
-          </a>
-          <small data-i18n="footer">© 2025 Строительная компания</small>
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <p>example154@gmail.com</p>
         </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <p>Chomutov, Czechia</p>
+        </div>
+        <a href="/anket" class="contact-btn" data-i18n="contactBtn">
+          <i class="fa-solid fa-paper-plane"></i> Отправить заявку
+        </a>
+        <small data-i18n="footer">© 2025 Строительная компания</small>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <script src="/static/js/script.js"></script>
+  <script src="/static/js/script.js"></script>
 </body>
 
 </html>
