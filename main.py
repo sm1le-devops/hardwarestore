@@ -9,13 +9,34 @@ from email import encoders
 import os, smtplib
 from dotenv import load_dotenv
 import json
+from fastapi.responses import RedirectResponse
+from starlette.middleware.base import BaseHTTPMiddleware
 # --- Загрузка .env ---
 load_dotenv()
 
 # --- FastAPI ---
+class SecurityHeaders(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+        response.headers["Content-Security-Policy"] = (
+    "default-src 'self'; "
+    "script-src 'self'; "
+    "style-src 'self' https://cdnjs.cloudflare.com;"
+    "font-src 'self' https://cdnjs.cloudflare.com data:; "
+    "img-src 'self' data:; "
+    "object-src 'none'; "
+    "base-uri 'self'; "
+    "frame-ancestors 'none'; "
+    "connect-src 'self';"
+)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        return response
+    
 app = FastAPI()
+app.add_middleware(SecurityHeaders)
 router = APIRouter()
-
 # --- Статика ---
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -81,6 +102,8 @@ Email: {email}
     # --- если есть фото ---
     if photo and photo.filename:
         content = await photo.read()
+        if len(content) > 3 * 1024 * 1024:  # 3MB
+            raise HTTPException(400, "Image too large")
         part = MIMEBase("application", "octet-stream")
         part.set_payload(content)
         encoders.encode_base64(part)
@@ -94,13 +117,8 @@ Email: {email}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка отправки письма: {e}")
 
-    # ✅ уведомление и редирект
-    return HTMLResponse("""
-        <script>
-            alert("✅ Заявка успешно отправлена!");
-            window.location.href = "/";
-        </script>
-    """)
+    
+    return RedirectResponse("/", status_code=303)
 
 
 # --- Подключаем роутер ---
