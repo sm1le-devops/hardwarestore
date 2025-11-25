@@ -228,19 +228,19 @@ loadLang(currentLang);
 langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
 document.documentElement.lang = lang;
 document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menuToggle");
-  const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menuToggle");
+    const navbar = document.getElementById("navbar");
 
-  if (menuToggle && navbar) {
-    menuToggle.addEventListener("click", () => {
-      navbar.classList.toggle("show");
-    });
+    if (menuToggle && navbar) {
+        menuToggle.addEventListener("click", () => {
+            navbar.classList.toggle("show");
+        });
 
-    // Автоматическое закрытие меню при выборе пункта
-    navbar.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navbar.classList.remove("show");
-      });
-    });
-  }
+        // Автоматическое закрытие меню при выборе пункта
+        navbar.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navbar.classList.remove("show");
+            });
+        });
+    }
 });
