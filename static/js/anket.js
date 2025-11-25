@@ -119,4 +119,4 @@ langSelect.addEventListener("change", (e) => {
 // Загрузка языка при старте
 loadLang(currentLang);
 langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
-document.documentElement.lang = lang;
+document.documentElement.lang = currentLang;

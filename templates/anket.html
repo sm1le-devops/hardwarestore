@@ -46,6 +46,7 @@
   <!-- Форма заявки -->
   <section class="order-form-section">
     <form class="order-form fade-in" action="/anket" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
       <div id="successMessage">
         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="24" height="24">
           <circle cx="26" cy="26" r="25" fill="none" stroke="white" stroke-width="2" />
@@ -61,7 +62,7 @@
         required>
 
       <label for="phone" data-i18n="labelPhone">Телефон</label>
-      <input type="tel" id="phone" name="phone" placeholder="+420 xxx xxx xxx" data-i18n-placeholder="placeholderPhone"
+      <input type="tel" id="phone" name="phone" placeholder="+xxx xxx xxx xxx" data-i18n-placeholder="placeholderPhone"
         required>
 
       <label for="email" data-i18n="labelEmail">Email</label>

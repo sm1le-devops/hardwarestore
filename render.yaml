@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: kolya-site
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    envVars:
+      - key: SECRET_KEY
+        value: "your-secret-key"
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_RECEIVER
+        sync: false
+    autoDeploy: true
