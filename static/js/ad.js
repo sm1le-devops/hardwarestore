@@ -51,17 +51,7 @@ window.addEventListener("load", updateActiveDot);
 const menuToggle = document.getElementById('menuToggle');
 const navbar = document.getElementById('navbar');
 menuToggle.onclick = () => {
-    const isVisible = navbar.style.display === 'flex';
-    navbar.style.display = isVisible ? 'none' : 'flex';
-    if (!isVisible) {
-        navbar.style.flexDirection = 'column';
-        navbar.style.background = 'rgba(0,0,0,0.9)';
-        navbar.style.position = 'absolute';
-        navbar.style.top = '60px';
-        navbar.style.right = '50px';
-        navbar.style.padding = '20px';
-        navbar.style.borderRadius = '10px';
-    }
+    navbar.classList.toggle('show');
 };
 
 // === Языки ===

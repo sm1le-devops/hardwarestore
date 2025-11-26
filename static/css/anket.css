@@ -85,6 +85,27 @@ body {
 @media (max-width: 768px) {
     .order-form-section {
         padding: 160px 20px 50px 20px;
+
+    }
+
+    .nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        width: 90px;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .nav.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 }
 
@@ -97,6 +118,19 @@ body {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.header {
+    padding: 10px 15px;
+}
+
+.logo-img {
+    width: 34px;
+    height: 34px;
+}
+
+.logo {
+    font-size: 15px;
 }
 
 .logo-link {

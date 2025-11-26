@@ -53,23 +53,28 @@
                     <h3 data-i18n="filtersTitle">Фильтры</h3>
 
                     <div class="filter-group">
-                        <h4 data-i18n="internalWorks">Внутренние работы</h4>
-                        {% for ad in ads if ad.category in ["electrical", "plumbing", "painting", "tiling", "rodof", "rosof"] %}
-                        <label>
-                            <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
-                            {{ ad.title }}
-                        </label>
-                        {% endfor %}
+                        <h4 class="filter-toggle" data-i18n="internalWorks">Внутренние работы</h4>
+                        <div class="filter-options">
+                            {% for ad in ads if ad.category in ["electrical", "plumbing", "painting", "tiling", "rodof",
+                            "rosof"] %}
+                            <label>
+                                <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
+                                <span>{{ ad.title }}</span>
+                            </label>
+                            {% endfor %}
+                        </div>
                     </div>
 
                     <div class="filter-group">
-                        <h4 data-i18n="externalWorks">Внешние работы</h4>
-                        {% for ad in ads if ad.category in ["facade", "roof", "rood", "facade-finishing"] %}
-                        <label>
-                            <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
-                            {{ ad.title }}
-                        </label>
-                        {% endfor %}
+                        <h4 class="filter-toggle" data-i18n="externalWorks">Внешние работы</h4>
+                        <div class="filter-options">
+                            {% for ad in ads if ad.category in ["facade", "roof", "rood", "facade-finishing"] %}
+                            <label>
+                                <input type="checkbox" class="filter-checkbox" data-category="{{ ad.category }}">
+                                <span>{{ ad.title }}</span>
+                            </label>
+                            {% endfor %}
+                        </div>
                     </div>
                 </aside>
 

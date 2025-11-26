@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const title = document.querySelector(".cards-title");
   const cards = document.querySelectorAll(".service-card");
 
+  document.querySelector(".filter-panel h3")?.addEventListener("click", () => {
+    filterPanel?.classList.toggle("open");
+  });
   // 1️⃣ Появление фильтра
   setTimeout(() => filterPanel.classList.add("visible"), 200);
 
@@ -58,12 +61,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   applyFilters();
   checkboxes.forEach(cb => cb.addEventListener("change", applyFilters));
+
+  document.querySelectorAll(".filter-toggle").forEach(toggle => {
+    const group = toggle.parentElement;
+
+    // По клику переключаем open
+    toggle.addEventListener("click", () => {
+      group.classList.toggle("open");
+    });
+
+    // По умолчанию раскрыть все группы
+    group.classList.add("open");
+  });
   // ===== Поиск =====
   const searchInput = document.getElementById('serviceSearch');
   searchInput?.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase();
     cards.forEach(card => {
-      const titleText = card.querySelector('h3').textContent.toLowerCase();
+      const h3 = card.querySelector("h3");
+      const titleText = h3 ? h3.textContent.toLowerCase() : "";
       if (titleText.includes(query)) {
         card.classList.remove('hidden');
       } else {
@@ -120,7 +136,7 @@ document.querySelector('.chat-btn.email')?.addEventListener('click', () => {
 });
 
 document.querySelector('.chat-btn.phone')?.addEventListener('click', () => {
-  window.location.href = 'tel:+420 xxx xxx xxx';
+  window.location.href = 'tel:+420912345678';
 });
 
 document.querySelector('.chat-btn.order')?.addEventListener('click', () => {
@@ -165,7 +181,8 @@ async function loadLang(lang) {
       const category = el.dataset.category;
       const label = el.closest("label");
       const text = getNested(translations, `categories.${category}`);
-      if (text && label) label.lastChild.textContent = ` ${text}`;
+      const span = label.querySelector("span");
+      if (span) span.textContent = text;
     });
 
   } catch (err) {
@@ -183,4 +200,4 @@ langSelect?.addEventListener("change", e => {
 // Инициализация языка при загрузке
 loadLang(currentLang);
 langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
-document.documentElement.lang = lang;
+document.documentElement.lang = currentLang;

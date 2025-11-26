@@ -120,3 +120,9 @@ langSelect.addEventListener("change", (e) => {
 loadLang(currentLang);
 langSelect.value = currentLang === "ru" ? "Русский" : "Czech";
 document.documentElement.lang = currentLang;
+const menuToggle = document.getElementById("menuToggle");
+const navbar = document.querySelector(".nav");
+
+menuToggle?.addEventListener("click", () => {
+    navbar?.classList.toggle("show");
+});
